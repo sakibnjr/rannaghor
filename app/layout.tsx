@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { CartProvider } from "./_components/cart-context";
+import { MotionProvider } from "./_components/motion-provider";
 import { CartDrawer } from "./cart/_components/cart-drawer";
 import { CartToastNotification } from "./_ui/toast";
 import "./globals.css";
@@ -29,11 +30,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[#FFF9F5] text-[#1D2522]">
-        <CartProvider>
-          {children}
-          <CartDrawer />
-          <CartToastNotification />
-        </CartProvider>
+        <MotionProvider>
+          <CartProvider>
+            {children}
+            <CartDrawer />
+            <CartToastNotification />
+          </CartProvider>
+        </MotionProvider>
       </body>
     </html>
   );

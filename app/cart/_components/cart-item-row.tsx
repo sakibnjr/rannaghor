@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import * as m from "motion/react-m";
 import { getCartItemUnitPrice, formatPrice } from "@/app/_lib/cart-calculations";
 import { useCart } from "@/app/_components/cart-context";
 import type { CartItem } from "@/app/_types/cart";
@@ -15,7 +16,12 @@ export function CartItemRow({ item, compact = false }: { item: CartItem; compact
   ].filter(Boolean);
 
   return (
-    <article className={`flex gap-4 ${compact ? "py-4" : "rounded-2xl border border-border bg-surface p-4 sm:p-5"}`}>
+    <m.article
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, x: 24, transition: { duration: 0.18 } }}
+      className={`flex gap-4 ${compact ? "py-4" : "rounded-2xl border border-border bg-surface p-4 sm:p-5"}`}
+    >
       <div className={`relative shrink-0 overflow-hidden rounded-xl bg-stone-100 ${compact ? "size-20" : "size-24 sm:size-28"}`}>
         <Image
           src={item.product.image}
@@ -89,6 +95,6 @@ export function CartItemRow({ item, compact = false }: { item: CartItem; compact
           </div>
         </div>
       </div>
-    </article>
+    </m.article>
   );
 }

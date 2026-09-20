@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import * as m from "motion/react-m";
 import { useCart } from "@/app/_components/cart-context";
 import { Icon } from "@/app/_ui/icon";
 import type { OfferCampaign } from "../_types/offer";
@@ -26,7 +27,10 @@ export function OfferCard({ offer }: { offer: OfferCampaign }) {
   }
 
   return (
-    <article className={`group overflow-hidden rounded-3xl border border-border bg-surface shadow-2xs transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${offer.featured ? "md:col-span-2 lg:grid lg:grid-cols-[1.15fr_0.85fr] xl:col-span-3" : "flex flex-col"}`}>
+    <m.article
+      whileHover={{ y: -4 }}
+      className={`group h-full overflow-hidden rounded-3xl border border-border bg-surface shadow-2xs transition-shadow duration-300 hover:shadow-md ${offer.featured ? "lg:grid lg:grid-cols-[1.15fr_0.85fr]" : "flex flex-col"}`}
+    >
       <div className={`relative overflow-hidden bg-stone-100 ${offer.featured ? "aspect-[16/10] lg:aspect-auto lg:min-h-[360px]" : "aspect-[16/10]"}`}>
         <Image
           src={offer.image}
@@ -38,10 +42,15 @@ export function OfferCard({ offer }: { offer: OfferCampaign }) {
         <div className="absolute left-4 top-4 rounded-full bg-primary px-3 py-1.5 text-xs font-bold text-white shadow-sm">
           {offer.label}
         </div>
-        <div className="absolute right-4 top-4 flex size-16 rotate-3 flex-col items-center justify-center bg-secondary text-center text-white shadow-md [clip-path:polygon(30%_0%,70%_0%,100%_30%,100%_70%,70%_100%,30%_100%,0%_70%,0%_30%)]">
+        <m.div
+          initial={{ scale: 0.8, rotate: -3 }}
+          whileInView={{ scale: 1, rotate: 3 }}
+          viewport={{ once: true }}
+          className="absolute right-4 top-4 flex size-16 flex-col items-center justify-center bg-secondary text-center text-white shadow-md [clip-path:polygon(30%_0%,70%_0%,100%_30%,100%_70%,70%_100%,30%_100%,0%_70%,0%_30%)]"
+        >
           <span className="text-[10px] font-semibold leading-none">SAVE</span>
           <strong className="mt-1 text-sm leading-none">৳{saving}</strong>
-        </div>
+        </m.div>
       </div>
 
       <div className={`flex flex-1 flex-col p-5 sm:p-6 ${offer.featured ? "lg:justify-center lg:px-8" : ""}`}>
@@ -68,15 +77,16 @@ export function OfferCard({ offer }: { offer: OfferCampaign }) {
             <p className="text-xs font-medium text-muted line-through">৳{offer.originalPrice.toLocaleString()}</p>
             <p className="text-2xl font-black text-dark">৳{offer.discountedPrice.toLocaleString()}</p>
           </div>
-          <button
+          <m.button
             type="button"
             onClick={addOffer}
+            whileTap={{ scale: 0.94 }}
             className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-primary px-5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-primary-hover"
           >
             <Icon name="cart" className="size-4" /> Add deal
-          </button>
+          </m.button>
         </div>
       </div>
-    </article>
+    </m.article>
   );
 }

@@ -4,6 +4,8 @@ import { Icon } from "@/app/_ui/icon";
 
 import Link from "next/link";
 import { useState } from "react";
+import { AnimatePresence } from "motion/react";
+import * as m from "motion/react-m";
 import { useCart } from "@/app/_components/cart-context";
 
 export function HeaderActions() {
@@ -23,8 +25,14 @@ export function HeaderActions() {
           <Icon name="search" />
         </button>
 
-        {showSearch && (
-          <div className="absolute right-0 top-12 w-72 bg-white border border-[#EAE5E1] shadow-xl rounded-2xl p-2 z-50 animate-in fade-in">
+        <AnimatePresence>
+          {showSearch && (
+          <m.div
+            initial={{ opacity: 0, y: -8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6, scale: 0.98 }}
+            className="absolute right-0 top-12 z-50 w-72 rounded-2xl border border-[#EAE5E1] bg-white p-2 shadow-xl"
+          >
             <div className="flex items-center gap-2 px-3 py-1.5 bg-stone-50 rounded-xl">
               <Icon name="search" />
               <input
@@ -37,8 +45,9 @@ export function HeaderActions() {
                 autoFocus
               />
             </div>
-          </div>
-        )}
+          </m.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Login / Account */}
@@ -59,11 +68,19 @@ export function HeaderActions() {
         aria-haspopup="dialog"
       >
         <Icon name="cart" />
-        {itemCount > 0 && (
-          <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 bg-[#E8572A] text-white text-[10px] font-bold rounded-full flex items-center justify-center shadow-xs">
-            {itemCount}
-          </span>
-        )}
+        <AnimatePresence initial={false}>
+          {itemCount > 0 && (
+            <m.span
+              key={itemCount}
+              initial={{ opacity: 0, scale: 0.5, y: 4 }}
+              animate={{ opacity: 1, scale: [1, 1.28, 1], y: 0 }}
+              exit={{ opacity: 0, scale: 0.5 }}
+              className="absolute -right-0.5 -top-0.5 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-[#E8572A] px-1 text-[10px] font-bold text-white shadow-xs"
+            >
+              {itemCount}
+            </m.span>
+          )}
+        </AnimatePresence>
       </button>
 
       {/* Order Now CTA Button */}

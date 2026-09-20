@@ -1,4 +1,5 @@
 import { Icon } from "@/app/_ui/icon";
+import * as m from "motion/react-m";
 import type { MenuCategoryFilter, MenuSort } from "../_types/menu";
 
 interface MenuToolbarProps {
@@ -47,10 +48,12 @@ export function MenuToolbar(props: MenuToolbarProps) {
               </select>
             </label>
 
-            <button
+            <m.button
               type="button"
               aria-pressed={props.availableOnly}
               onClick={() => props.onAvailabilityChange(!props.availableOnly)}
+              animate={{ scale: props.availableOnly ? 1.015 : 1 }}
+              whileTap={{ scale: 0.97 }}
               className={`inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-xl border px-4 text-sm font-bold transition-colors ${
                 props.availableOnly
                   ? "border-primary bg-primary text-white"
@@ -58,7 +61,7 @@ export function MenuToolbar(props: MenuToolbarProps) {
               }`}
             >
               <Icon name="check" className="size-3.5" /> Available now
-            </button>
+            </m.button>
           </div>
 
           <div
@@ -68,11 +71,13 @@ export function MenuToolbar(props: MenuToolbarProps) {
             {props.categories.map((item) => {
               const active = props.category === item.id;
               return (
-                <button
+                <m.button
                   key={item.id}
                   type="button"
                   aria-pressed={active}
                   onClick={() => props.onCategoryChange(item.id)}
+                  animate={{ scale: active ? 1.025 : 1 }}
+                  whileTap={{ scale: 0.96 }}
                   className={`min-h-10 shrink-0 whitespace-nowrap rounded-xl px-3 text-xs font-bold transition-colors lg:min-w-0 lg:px-2 ${
                     active
                       ? "bg-primary text-white shadow-sm"
@@ -83,7 +88,7 @@ export function MenuToolbar(props: MenuToolbarProps) {
                   <span className={active ? "text-white/75" : "text-muted"}>
                     ({props.counts[item.id] ?? 0})
                   </span>
-                </button>
+                </m.button>
               );
             })}
           </div>

@@ -3,6 +3,8 @@
 import { Icon } from "@/app/_ui/icon";
 
 import Link from "next/link";
+import { AnimatePresence } from "motion/react";
+import * as m from "motion/react-m";
 import { useMenuFilter } from "./menu-filter-provider";
 import { popularProducts } from "@/app/_data/products";
 import { exploreCategories, exploreMenuItems } from "@/app/_data/explore-menu";
@@ -39,10 +41,12 @@ export function MenuExploreSection() {
           {exploreCategories.map((cat) => {
             const isActive = activeTab === cat;
             return (
-              <button
+              <m.button
                 key={cat}
                 onClick={() => setActiveTab(cat)}
                 aria-pressed={isActive}
+                animate={{ scale: isActive ? 1.025 : 1 }}
+                whileTap={{ scale: 0.96 }}
                 className={`min-h-11 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all cursor-pointer ${
                   isActive
                     ? "bg-[#E8572A] text-white shadow-xs"
@@ -50,7 +54,7 @@ export function MenuExploreSection() {
                 }`}
               >
                 {cat}
-              </button>
+              </m.button>
             );
           })}
         </div>
@@ -58,11 +62,26 @@ export function MenuExploreSection() {
 
       <p className="sr-only" role="status">{displayItems.length} dishes in {activeTab}</p>
       {/* Filtered menu preview */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-        {displayItems.map((item) => (
-          <MenuExploreCard key={item.id} item={item} />
-        ))}
-      </div>
+      <AnimatePresence mode="wait" initial={false}>
+        <m.div
+          key={activeTab}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3"
+        >
+          {displayItems.map((item, index) => (
+            <m.div
+              key={item.id}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.04 }}
+            >
+              <MenuExploreCard item={item} />
+            </m.div>
+          ))}
+        </m.div>
+      </AnimatePresence>
 
       {/* Bottom View Full Menu CTA */}
       <div className="flex justify-center mt-8">

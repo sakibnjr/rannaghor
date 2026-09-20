@@ -1,10 +1,16 @@
+"use client";
+
 import Image from "next/image";
+import * as m from "motion/react-m";
 import type { CustomerReview } from "@/app/_data/reviews";
 import { Icon } from "@/app/_ui/icon";
 
 export function ReviewCard({ review }: { review: CustomerReview }) {
   return (
-    <article className="flex h-full min-h-44 flex-col rounded-2xl border border-clay-border bg-white p-4 shadow-2xs transition-shadow hover:shadow-md sm:p-5">
+    <m.article
+      whileHover={{ y: -3 }}
+      className="flex h-full min-h-44 flex-col rounded-2xl border border-clay-border bg-white p-4 shadow-2xs transition-shadow hover:shadow-md sm:p-5"
+    >
       <div className="flex items-center gap-3">
         <div className="relative size-11 shrink-0 overflow-hidden rounded-full border-2 border-warm-cream bg-stone-100">
           <Image
@@ -34,6 +40,6 @@ export function ReviewCard({ review }: { review: CustomerReview }) {
         ))}
         <span className="ml-1 text-xs font-bold text-dark">{review.rating}.0</span>
       </div>
-    </article>
+    </m.article>
   );
 }

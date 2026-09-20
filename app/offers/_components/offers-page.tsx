@@ -3,6 +3,7 @@ import { SiteHeader } from "@/app/_components/site-header";
 import { OfferSteps } from "./offer-steps";
 import { OffersBrowser } from "./offers-browser";
 import { OffersHero } from "./offers-hero";
+import { Reveal } from "@/app/_ui/reveal";
 
 export function OffersPage() {
   return (
@@ -10,8 +11,8 @@ export function OffersPage() {
       <SiteHeader />
       <main className="flex-1">
         <OffersHero />
-        <OffersBrowser />
-        <OfferSteps />
+        <Reveal><OffersBrowser /></Reveal>
+        <Reveal><OfferSteps /></Reveal>
       </main>
       <SiteFooter />
     </div>

@@ -5,6 +5,8 @@ import { Icon } from "@/app/_ui/icon";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { AnimatePresence } from "motion/react";
+import * as m from "motion/react-m";
 
 export function MobileNavDrawer() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,8 +33,14 @@ export function MobileNavDrawer() {
         <Icon name={isOpen ? "close" : "menu"} className="size-6" />
       </button>
 
-      {isOpen && (
-        <div className="fixed inset-x-0 top-[65px] bg-white border-b border-[#EAE5E1] p-5 shadow-xl z-50 animate-in slide-in-from-top-2">
+      <AnimatePresence>
+        {isOpen && (
+        <m.div
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          className="fixed inset-x-0 top-[65px] z-50 border-b border-[#EAE5E1] bg-white p-5 shadow-xl"
+        >
           <nav className="flex flex-col gap-3">
             {links.map((link) => {
               const active = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
@@ -52,8 +60,9 @@ export function MobileNavDrawer() {
               );
             })}
           </nav>
-        </div>
-      )}
+        </m.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

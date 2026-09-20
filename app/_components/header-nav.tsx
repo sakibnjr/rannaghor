@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import * as m from "motion/react-m";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -29,7 +30,10 @@ export function HeaderNav() {
           >
             {link.label}
             {active && (
-              <span
+              <m.span
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={{ scaleX: 1, opacity: 1 }}
+                transition={{ duration: 0.22 }}
                 className="absolute -bottom-1.5 left-0 right-0 h-[2.5px] bg-[#E8572A] rounded-full"
                 aria-hidden="true"
               />

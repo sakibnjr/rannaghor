@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, type PointerEvent } from "react";
+import * as m from "motion/react-m";
 import { customerReviews, reviewsSummary } from "@/app/_data/reviews";
 import { Icon } from "@/app/_ui/icon";
 import { ReviewCard } from "./review-card";
@@ -147,7 +148,13 @@ export function ReviewsSection() {
               aria-label={`Show review page ${index + 1}`}
               aria-current={activePage === index ? "true" : undefined}
             >
-              <span className={`block rounded-full transition-all ${activePage === index ? "size-2.5 bg-primary" : "size-2 bg-stone-300 hover:bg-stone-400"}`} />
+              <m.span
+                animate={{
+                  width: activePage === index ? 22 : 8,
+                  backgroundColor: activePage === index ? "var(--color-primary)" : "var(--color-border)",
+                }}
+                className="block h-2 rounded-full"
+              />
             </button>
           ))}
         </div>

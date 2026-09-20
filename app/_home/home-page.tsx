@@ -12,6 +12,7 @@ import { WhyChooseUs } from "./_components/why-choose-us";
 import { ReviewsSection } from "./_components/reviews-section";
 import { LocationSection } from "./_components/location-section";
 import { FinalCtaSection } from "./_components/final-cta-section";
+import { Reveal } from "@/app/_ui/reveal";
 
 export function HomePage() {
   return (
@@ -25,16 +26,16 @@ export function HomePage() {
 
           {/* Main Content Sections from design with unified consistent section spacing */}
           <div className="site-shell home-section-stack flex-1">
-            <CategorySection />
-            <PopularSection />
-            <OffersSection />
-            <MenuExploreSection />
-            <GallerySection />
-            <StorySection />
-            <WhyChooseUs />
-            <ReviewsSection />
-            <LocationSection />
-            <FinalCtaSection />
+            <Reveal><CategorySection /></Reveal>
+            <Reveal><PopularSection /></Reveal>
+            <Reveal><OffersSection /></Reveal>
+            <Reveal><MenuExploreSection /></Reveal>
+            <Reveal><GallerySection /></Reveal>
+            <Reveal><StorySection /></Reveal>
+            <Reveal><WhyChooseUs /></Reveal>
+            <Reveal><ReviewsSection /></Reveal>
+            <Reveal><LocationSection /></Reveal>
+            <Reveal><FinalCtaSection /></Reveal>
           </div>
         </main>
       </MenuFilterProvider>

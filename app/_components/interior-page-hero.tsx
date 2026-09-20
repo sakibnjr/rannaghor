@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
+import { Reveal } from "@/app/_ui/reveal";
 
 interface InteriorPageHeroProps {
   labelledBy: string;
@@ -35,9 +36,9 @@ export function InteriorPageHero({
         aria-hidden="true"
       />
       <div className="site-shell flex h-full items-center py-7">
-        <div className="max-w-[570px] rounded-2xl bg-brand-bg/94 p-5 shadow-sm sm:bg-transparent sm:p-0 sm:shadow-none">
+        <Reveal className="max-w-[570px] rounded-2xl bg-brand-bg/94 p-5 shadow-sm sm:bg-transparent sm:p-0 sm:shadow-none">
           {children}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

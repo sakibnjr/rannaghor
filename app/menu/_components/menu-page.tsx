@@ -2,6 +2,7 @@ import { SiteFooter } from "@/app/_components/site-footer";
 import { SiteHeader } from "@/app/_components/site-header";
 import { MenuBrowser } from "./menu-browser";
 import { MenuHero } from "./menu-hero";
+import { Reveal } from "@/app/_ui/reveal";
 
 export function MenuPage() {
   return (
@@ -9,7 +10,7 @@ export function MenuPage() {
       <SiteHeader />
       <main className="flex-1">
         <MenuHero />
-        <MenuBrowser />
+        <Reveal><MenuBrowser /></Reveal>
       </main>
       <SiteFooter />
     </div>

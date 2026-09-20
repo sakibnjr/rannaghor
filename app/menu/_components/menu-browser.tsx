@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { AnimatePresence } from "motion/react";
+import * as m from "motion/react-m";
 import { Icon } from "@/app/_ui/icon";
 import { FoodProductCard } from "@/app/_components/food-product-card";
 import { menuCategories, menuProducts, normalizeCategory } from "../_data/menu-products";
@@ -68,9 +70,26 @@ export function MenuBrowser() {
         </div>
 
         {products.length > 0 ? (
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {products.map((product) => <FoodProductCard key={product.id} product={product} />)}
-          </div>
+          <AnimatePresence mode="wait" initial={false}>
+            <m.div
+              key={`${category}-${sort}-${availableOnly}-${query.trim()}`}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            >
+              {products.map((product, index) => (
+                <m.div
+                  key={product.id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: Math.min(index, 7) * 0.035 }}
+                >
+                  <FoodProductCard product={product} />
+                </m.div>
+              ))}
+            </m.div>
+          </AnimatePresence>
         ) : (
           <div className="rounded-3xl border border-border bg-surface px-6 py-16 text-center">
             <span className="mx-auto flex size-14 items-center justify-center rounded-full bg-primary-light text-primary"><Icon name="search" className="size-6" /></span>

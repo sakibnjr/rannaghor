@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import { AnimatePresence } from "motion/react";
+import * as m from "motion/react-m";
 import { galleryCategories, galleryPhotos } from "../_data/gallery-photos";
 import type { GalleryCategory } from "../_types/gallery";
 import { GalleryLightbox } from "./gallery-lightbox";
@@ -18,20 +20,49 @@ export function GalleryBrowser() {
         <p className="text-sm text-muted" role="status">{photos.length} photos</p>
       </div>
       <div className="no-scrollbar mt-6 flex gap-2 overflow-x-auto pb-2" aria-label="Filter gallery photos">
-        {galleryCategories.map((item) => <button key={item} type="button" aria-pressed={category === item} onClick={() => setCategory(item)} className={`min-h-11 shrink-0 rounded-full border px-4 text-sm font-bold ${category === item ? "border-primary bg-primary text-white" : "border-border bg-surface text-dark hover:border-primary hover:text-primary"}`}>{item}</button>)}
-      </div>
-      <div className="mt-7 grid auto-rows-[220px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {photos.map((photo, index) => {
-          const featured = index === 0 || index === 7;
+        {galleryCategories.map((item) => {
+          const active = category === item;
           return (
-            <button key={photo.id} type="button" onClick={() => setActiveIndex(index)} className={`group relative overflow-hidden rounded-3xl bg-stone-100 text-left ${featured ? "sm:col-span-2 sm:row-span-2" : ""}`}>
-              <Image src={photo.image} alt={photo.title} fill sizes={featured ? "(max-width: 1023px) 100vw, 66vw" : "(max-width: 639px) 100vw, 33vw"} className="object-cover transition-transform duration-500 group-hover:scale-105" />
-              <span className="absolute inset-x-0 bottom-0 bg-dark/80 p-4 text-white"><span className="block text-xs font-bold uppercase tracking-wider text-orange-200">{photo.category}</span><span className="mt-1 block text-lg font-bold">{photo.title}</span></span>
-            </button>
+            <m.button
+              key={item}
+              type="button"
+              aria-pressed={active}
+              onClick={() => setCategory(item)}
+              animate={{ scale: active ? 1.025 : 1 }}
+              whileTap={{ scale: 0.96 }}
+              className={`min-h-11 shrink-0 rounded-full border px-4 text-sm font-bold ${active ? "border-primary bg-primary text-white" : "border-border bg-surface text-dark hover:border-primary hover:text-primary"}`}
+            >
+              {item}
+            </m.button>
           );
         })}
       </div>
-      {activeIndex !== null && <GalleryLightbox photos={photos} activeIndex={activeIndex} onClose={() => setActiveIndex(null)} onChange={setActiveIndex} />}
+      <m.div
+        key={category}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="mt-7 grid auto-rows-[220px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        {photos.map((photo, index) => {
+          const featured = index === 0 || index === 7;
+          return (
+            <m.button
+              key={photo.id}
+              type="button"
+              onClick={() => setActiveIndex(index)}
+              whileHover={{ y: -3 }}
+              whileTap={{ scale: 0.985 }}
+              className={`group relative overflow-hidden rounded-3xl bg-stone-100 text-left shadow-2xs hover:shadow-md ${featured ? "sm:col-span-2 sm:row-span-2" : ""}`}
+            >
+              <Image src={photo.image} alt={photo.title} fill sizes={featured ? "(max-width: 1023px) 100vw, 66vw" : "(max-width: 639px) 100vw, 33vw"} className="object-cover transition-transform duration-500 group-hover:scale-105" />
+              <span className="absolute inset-x-0 bottom-0 bg-dark/80 p-4 text-white"><span className="block text-xs font-bold uppercase tracking-wider text-orange-200">{photo.category}</span><span className="mt-1 block text-lg font-bold">{photo.title}</span></span>
+            </m.button>
+          );
+        })}
+      </m.div>
+      <AnimatePresence>
+        {activeIndex !== null && <GalleryLightbox photos={photos} activeIndex={activeIndex} onClose={() => setActiveIndex(null)} onChange={setActiveIndex} />}
+      </AnimatePresence>
     </section>
   );
 }

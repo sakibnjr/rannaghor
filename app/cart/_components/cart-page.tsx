@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { AnimatePresence } from "motion/react";
 import { useCart } from "@/app/_components/cart-context";
 import { Icon } from "@/app/_ui/icon";
 import { CartEmpty } from "./cart-empty";
@@ -43,7 +44,9 @@ export function CartPage() {
       ) : (
         <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_380px]">
           <section aria-label="Cart items" className="space-y-4">
-            {items.map((item) => <CartItemRow key={item.key} item={item} />)}
+            <AnimatePresence initial={false}>
+              {items.map((item) => <CartItemRow key={item.key} item={item} />)}
+            </AnimatePresence>
             <button type="button" onClick={clearCart} className="min-h-11 px-2 text-sm font-semibold text-muted hover:text-primary">
               Remove all items
             </button>

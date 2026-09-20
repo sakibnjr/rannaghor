@@ -4,6 +4,8 @@ import { Icon } from "@/app/_ui/icon";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { AnimatePresence } from "motion/react";
+import * as m from "motion/react-m";
 import { rannaGhorConfig } from "@/app/_data/restaurant";
 import { heroSlides } from "../_data/hero-slides";
 import { HeroTrustBar } from "./hero-trust-bar";
@@ -39,7 +41,18 @@ export function HeroSection() {
       className="hero-section"
     >
       <div className="hero-content">
-        <div key={slide.id} className="hero-copy hero-slide-copy" role="group" aria-roledescription="slide" aria-label={`${activeIndex + 1} of ${heroSlides.length}`}>
+        <AnimatePresence mode="wait" initial={false}>
+        <m.div
+          key={slide.id}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.32 }}
+          className="hero-copy"
+          role="group"
+          aria-roledescription="slide"
+          aria-label={`${activeIndex + 1} of ${heroSlides.length}`}
+        >
           <p className="text-sm font-semibold text-primary">{slide.badge}</p>
           <h1 id="hero-heading" className="hero-heading">
             {slide.headline.line1}
@@ -57,13 +70,20 @@ export function HeroSection() {
             </Link>
           </div>
           <HeroTrustBar delivery={rannaGhorConfig.delivery} />
-        </div>
+        </m.div>
+        </AnimatePresence>
       </div>
       <div className="hero-visual">
         {heroSlides.map((item, index) => (
-          <div key={item.id} aria-hidden={index !== activeIndex} className={`hero-photo transition-opacity duration-500 ${index === activeIndex ? "opacity-100" : "opacity-0"}`}>
+          <m.div
+            key={item.id}
+            aria-hidden={index !== activeIndex}
+            animate={{ opacity: index === activeIndex ? 1 : 0 }}
+            transition={{ duration: 0.55 }}
+            className="hero-photo"
+          >
             <Image src={item.image.src} alt={index === activeIndex ? item.image.alt : ""} fill preload={index === 0} sizes="100vw" className="hero-image object-cover" />
-          </div>
+          </m.div>
         ))}
         <HeroFloatingElements highlight={slide.highlight} note={slide.note} />
       </div>
