@@ -1,0 +1,85 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import { Icon } from "@/app/_ui/icon";
+import { menuCategories, menuProducts, normalizeCategory } from "../_data/menu-products";
+import type { MenuSort } from "../_types/menu";
+import { MenuProductCard } from "./menu-product-card";
+import { MenuToolbar } from "./menu-toolbar";
+
+export function MenuBrowser() {
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("all");
+  const [sort, setSort] = useState<MenuSort>("popular");
+  const [availableOnly, setAvailableOnly] = useState(false);
+
+  const counts = useMemo(() => Object.fromEntries(menuCategories.map((item) => [
+    item.id,
+    item.id === "all" ? menuProducts.length : menuProducts.filter((product) => normalizeCategory(product.categoryId) === item.id).length,
+  ])), []);
+
+  const products = useMemo(() => {
+    const term = query.trim().toLowerCase();
+    const result = menuProducts.filter((product) => {
+      const matchesCategory = category === "all" || normalizeCategory(product.categoryId) === category;
+      const matchesAvailability = !availableOnly || product.available;
+      const matchesSearch = !term || `${product.name} ${product.description} ${product.categoryId}`.toLowerCase().includes(term);
+      return matchesCategory && matchesAvailability && matchesSearch;
+    });
+
+    return result.toSorted((first, second) => {
+      if (sort === "price-low") return first.price - second.price;
+      if (sort === "price-high") return second.price - first.price;
+      if (sort === "rating") return second.rating - first.rating;
+      return Number(second.bestseller) - Number(first.bestseller) || second.reviewCount - first.reviewCount;
+    });
+  }, [availableOnly, category, query, sort]);
+
+  function clearFilters() {
+    setQuery("");
+    setCategory("all");
+    setAvailableOnly(false);
+    setSort("popular");
+  }
+
+  return (
+    <section aria-labelledby="menu-results-heading">
+      <MenuToolbar
+        query={query}
+        category={category}
+        sort={sort}
+        availableOnly={availableOnly}
+        categories={menuCategories}
+        counts={counts}
+        onQueryChange={setQuery}
+        onCategoryChange={setCategory}
+        onSortChange={setSort}
+        onAvailabilityChange={setAvailableOnly}
+      />
+
+      <div className="site-shell pb-10 pt-4 lg:pb-14 lg:pt-5">
+        <div className="mb-6 flex items-end justify-between gap-4">
+          <div>
+            <h2 id="menu-results-heading" className="text-2xl font-bold tracking-tight text-dark sm:text-3xl">
+              {category === "all" ? "All dishes" : menuCategories.find((item) => item.id === category)?.label}
+            </h2>
+          </div>
+          <p className="text-sm text-muted" role="status">{products.length} {products.length === 1 ? "dish" : "dishes"}</p>
+        </div>
+
+        {products.length > 0 ? (
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {products.map((product) => <MenuProductCard key={product.id} product={product} />)}
+          </div>
+        ) : (
+          <div className="rounded-3xl border border-border bg-surface px-6 py-16 text-center">
+            <span className="mx-auto flex size-14 items-center justify-center rounded-full bg-primary-light text-primary"><Icon name="search" className="size-6" /></span>
+            <h3 className="mt-4 text-xl font-bold text-dark">No dishes found</h3>
+            <p className="mx-auto mt-2 max-w-md text-sm text-muted">Try another search or clear the filters to browse the complete menu.</p>
+            <button type="button" onClick={clearFilters} className="section-action mt-5 bg-primary text-white hover:bg-primary-hover">Clear filters</button>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
