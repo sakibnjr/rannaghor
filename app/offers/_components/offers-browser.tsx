@@ -13,8 +13,8 @@ export function OffersBrowser() {
   );
 
   return (
-    <section id="all-offers" aria-labelledby="all-offers-heading" className="scroll-mt-24 px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-      <div className="mx-auto max-w-[1280px]">
+    <section id="all-offers" aria-labelledby="all-offers-heading" className="page-section scroll-mt-24">
+      <div className="site-shell px-4 sm:px-6 lg:px-8 2xl:px-10">
         <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
           <div>
             <h2 id="all-offers-heading" className="text-3xl font-extrabold tracking-tight text-dark sm:text-4xl">Choose your deal</h2>

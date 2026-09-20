@@ -9,6 +9,10 @@ import { Icon } from "@/app/_ui/icon";
 export function CartItemRow({ item, compact = false }: { item: CartItem; compact?: boolean }) {
   const { updateQuantity, removeItem } = useCart();
   const unitPrice = getCartItemUnitPrice(item);
+  const selectedOptions = [
+    item.variant?.name,
+    ...item.addOns.map((addOn) => addOn.name),
+  ].filter(Boolean);
 
   return (
     <article className={`flex gap-4 ${compact ? "py-4" : "rounded-2xl border border-border bg-surface p-4 sm:p-5"}`}>
@@ -26,11 +30,19 @@ export function CartItemRow({ item, compact = false }: { item: CartItem; compact
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <h3 className="truncate font-bold text-dark">{item.product.name}</h3>
-            {(item.variant || item.addOns.length > 0) && (
-              <p className="mt-1 line-clamp-2 text-xs leading-5 text-muted">
-                {[item.variant?.name, ...item.addOns.map((addOn) => addOn.name)]
-                  .filter(Boolean)
-                  .join(" · ")}
+            <p className={`mt-1 text-sm leading-5 text-muted ${compact ? "line-clamp-1" : "line-clamp-2 max-w-2xl"}`}>
+              {item.product.description}
+            </p>
+            {selectedOptions.length > 0 && (
+              <p className="mt-1 line-clamp-1 text-xs leading-5 text-muted">
+                <span className="font-semibold text-dark">Selected:</span>{" "}
+                {selectedOptions.join(" · ")}
+              </p>
+            )}
+            {item.instructions && (
+              <p className="mt-1 line-clamp-1 text-xs leading-5 text-muted">
+                <span className="font-semibold text-dark">Note:</span>{" "}
+                {item.instructions}
               </p>
             )}
           </div>
@@ -44,7 +56,7 @@ export function CartItemRow({ item, compact = false }: { item: CartItem; compact
           </button>
         </div>
 
-        <div className="mt-4 flex items-end justify-between gap-3">
+        <div className="mt-3 flex items-end justify-between gap-3">
           <div
             className="flex h-10 items-center rounded-full border border-border bg-brand-bg"
             aria-label={`Quantity for ${item.product.name}`}

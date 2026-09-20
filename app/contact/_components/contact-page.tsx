@@ -8,7 +8,7 @@ export function ContactPage() {
   return (
     <PageShell>
       <ContactHero />
-      <div className="site-shell grid gap-6 py-14 sm:py-16 lg:grid-cols-[0.72fr_1.28fr]">
+      <div className="site-shell page-section grid gap-6 lg:grid-cols-[0.72fr_1.28fr]">
         <ContactDetails />
         <ContactForm />
       </div>

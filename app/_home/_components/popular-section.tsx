@@ -1,7 +1,7 @@
 import { Icon } from "@/app/_ui/icon";
 import Link from "next/link";
 import { popularProducts } from "@/app/_data/products";
-import { ProductCard } from "./product-card";
+import { FoodProductCard } from "@/app/_components/food-product-card";
 
 export function PopularSection() {
   return (
@@ -32,7 +32,7 @@ export function PopularSection() {
       {/* 4-Item Product Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
         {popularProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <FoodProductCard key={product.id} product={product} />
         ))}
       </div>
     </section>

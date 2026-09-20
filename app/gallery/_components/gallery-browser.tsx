@@ -12,7 +12,7 @@ export function GalleryBrowser() {
   const photos = useMemo(() => category === "All" ? galleryPhotos : galleryPhotos.filter((photo) => photo.category === category), [category]);
 
   return (
-    <section className="site-shell py-12 sm:py-16" aria-labelledby="gallery-collection-heading">
+    <section className="site-shell page-section" aria-labelledby="gallery-collection-heading">
       <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
         <div><h2 id="gallery-collection-heading" className="text-3xl font-extrabold tracking-tight sm:text-4xl">Explore our gallery</h2></div>
         <p className="text-sm text-muted" role="status">{photos.length} photos</p>

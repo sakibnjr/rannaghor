@@ -24,7 +24,7 @@ export function HomePage() {
           <HeroSection />
 
           {/* Main Content Sections from design with unified consistent section spacing */}
-          <div className="site-shell flex-1 space-y-10 pb-6 pt-0 sm:space-y-12 sm:pb-8">
+          <div className="site-shell home-section-stack flex-1">
             <CategorySection />
             <PopularSection />
             <OffersSection />

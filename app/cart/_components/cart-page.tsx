@@ -12,7 +12,7 @@ export function CartPage() {
 
   if (!isReady) {
     return (
-      <div className="site-shell py-10 sm:py-14 lg:py-16" aria-busy="true" aria-label="Loading cart">
+      <div className="site-shell page-section" aria-busy="true" aria-label="Loading cart">
         <div className="h-10 w-48 animate-pulse rounded-xl bg-stone-200" />
         <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_380px]">
           <div className="h-40 animate-pulse rounded-3xl bg-white" />
@@ -23,11 +23,10 @@ export function CartPage() {
   }
 
   return (
-    <div className="site-shell py-10 sm:py-14 lg:py-16">
+    <div className="site-shell page-section">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-sm font-bold text-primary">Ready when you are</p>
-          <h1 className="mt-1 text-3xl font-extrabold tracking-tight text-dark sm:text-4xl">Your cart</h1>
+          <h1 className="text-3xl font-extrabold tracking-tight text-dark sm:text-4xl">Your cart</h1>
           <p className="mt-2 text-sm text-muted">
             {itemCount ? `${itemCount} ${itemCount === 1 ? "item" : "items"} ready to order` : "Your selected dishes will appear here."}
           </p>

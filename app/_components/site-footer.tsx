@@ -10,7 +10,7 @@ export function SiteFooter() {
   const signatureSecondLine = taglineWords.slice(2).join(" ");
 
   return (
-    <footer className="w-full bg-[#0D382E] text-stone-200 pt-14 pb-8 mt-12 border-t border-emerald-950">
+    <footer className="w-full border-t border-emerald-950 bg-[#0D382E] pb-8 pt-14 text-stone-200">
       <div className="site-shell">
         {/* Main 5-Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 pb-12 border-b border-emerald-800/40">

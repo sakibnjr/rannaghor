@@ -26,8 +26,9 @@ export function LocationSection() {
   return (
     <section
       aria-labelledby="location-heading"
-      className="grid overflow-hidden rounded-2xl border border-clay-border bg-clay shadow-sm lg:grid-cols-[0.76fr_1.24fr]"
+      className="grid overflow-hidden rounded-2xl border border-clay-border bg-clay shadow-sm lg:grid-cols-[1.24fr_0.76fr]"
     >
+      <LocationMap compact />
       <div className="px-5 py-5 text-dark sm:px-6 sm:py-6">
         <div>
           <h2
@@ -76,7 +77,6 @@ export function LocationSection() {
           </div>
         </div>
       </div>
-      <LocationMap compact />
     </section>
   );
 }

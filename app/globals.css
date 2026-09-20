@@ -38,6 +38,17 @@ body {
   padding-inline: 16px;
 }
 
+/* Consistent vertical rhythm for primary page sections. */
+.page-section {
+  padding-block: 48px;
+}
+.home-section-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding-block: 48px;
+}
+
 /* Custom utility to hide scrollbars while allowing smooth scrolling */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
@@ -116,6 +127,8 @@ body {
 }
 @media (min-width: 640px) {
   .site-shell { padding-inline: 24px; }
+  .page-section { padding-block: 64px; }
+  .home-section-stack { gap: 64px; padding-block: 64px; }
   .hero-content { padding: 40px 24px 28px; }
 }
 @media (min-width: 1024px) {

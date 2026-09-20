@@ -94,9 +94,12 @@ export function ReviewsSection() {
 
   return (
     <section aria-labelledby="reviews-heading" className="w-full">
-      <h2 id="reviews-heading" className="mb-4 text-2xl font-bold tracking-tight text-dark sm:text-3xl">
-        Customer Reviews
-      </h2>
+      <div className="mb-4">
+        <h2 id="reviews-heading" className="text-2xl font-bold tracking-tight text-dark sm:text-3xl">
+          Customer Reviews
+        </h2>
+        <p className="mt-1 text-sm text-muted">Real experiences from people who order with us.</p>
+      </div>
 
       <div
         ref={railRef}

@@ -18,7 +18,7 @@ export function ContactDetails() {
       <ul className="mt-7 divide-y divide-dark/10 border-y border-dark/10">
         {details.map((detail) => (
           <li key={detail.title} className="flex items-center gap-4 py-4">
-            <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-primary"><Icon name={detail.icon} className="size-5" /></span>
+            <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-primary text-white"><Icon name={detail.icon} className="size-5" /></span>
             <span><span className="block text-xs font-semibold text-muted">{detail.title}</span>{detail.href ? <a href={detail.href} target={detail.href.startsWith("http") ? "_blank" : undefined} rel={detail.href.startsWith("http") ? "noopener noreferrer" : undefined} className="mt-0.5 block text-sm font-bold hover:text-primary">{detail.value}</a> : <span className="mt-0.5 block text-sm font-bold">{detail.value}</span>}</span>
           </li>
         ))}

@@ -2,9 +2,9 @@
 
 import { useMemo, useState } from "react";
 import { Icon } from "@/app/_ui/icon";
+import { FoodProductCard } from "@/app/_components/food-product-card";
 import { menuCategories, menuProducts, normalizeCategory } from "../_data/menu-products";
 import type { MenuSort } from "../_types/menu";
-import { MenuProductCard } from "./menu-product-card";
 import { MenuToolbar } from "./menu-toolbar";
 
 export function MenuBrowser() {
@@ -57,7 +57,7 @@ export function MenuBrowser() {
         onAvailabilityChange={setAvailableOnly}
       />
 
-      <div className="site-shell pb-10 pt-4 lg:pb-14 lg:pt-5">
+      <div className="site-shell pb-12 pt-5 sm:pb-16 sm:pt-6">
         <div className="mb-6 flex items-end justify-between gap-4">
           <div>
             <h2 id="menu-results-heading" className="text-2xl font-bold tracking-tight text-dark sm:text-3xl">
@@ -69,7 +69,7 @@ export function MenuBrowser() {
 
         {products.length > 0 ? (
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {products.map((product) => <MenuProductCard key={product.id} product={product} />)}
+            {products.map((product) => <FoodProductCard key={product.id} product={product} />)}
           </div>
         ) : (
           <div className="rounded-3xl border border-border bg-surface px-6 py-16 text-center">
