@@ -27,7 +27,7 @@ export function CartToastNotification() {
         exit={{ opacity: 0, y: 12, scale: 0.98 }}
         aria-label="Notification"
         role="status"
-        className="fixed bottom-4 left-4 right-4 z-[70] flex items-center gap-3 rounded-2xl border border-stone-700/50 bg-dark px-4 py-3 text-white shadow-xl sm:bottom-6 sm:left-auto sm:right-6 sm:max-w-md"
+        className="fixed bottom-20 left-4 right-4 z-[70] flex items-center gap-3 rounded-2xl border border-stone-700/50 bg-dark px-4 py-3 text-white shadow-xl sm:bottom-6 sm:left-auto sm:right-6 sm:max-w-md"
       >
       <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm">
         <Icon name="check" className="size-4" />

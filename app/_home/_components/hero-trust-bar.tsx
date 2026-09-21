@@ -9,34 +9,47 @@ export function HeroTrustBar({ delivery }: HeroTrustBarProps) {
   const details = [
     {
       title: delivery.isOpen ? "Open Now" : "Closed",
-      description: delivery.isOpen ? `Until ${delivery.closingTime}` : "Check opening hours",
-      icon: delivery.isOpen ? "check" as const : "minus" as const,
+      description: delivery.isOpen ? `Until ${delivery.closingTime}` : "Check hours",
+      icon: delivery.isOpen ? ("check" as const) : ("minus" as const),
       color: "bg-secondary",
     },
     {
       title: delivery.averageTime,
-      description: "Average delivery",
+      description: "Avg delivery",
       icon: "clock" as const,
       color: "bg-primary",
     },
     {
       title: delivery.deliveryMethod,
-      description: "Choose at checkout",
+      description: "Fast delivery",
       icon: "delivery" as const,
       color: "bg-primary",
     },
   ];
 
   return (
-    <ul aria-label="Restaurant service information" className="flex flex-wrap gap-x-4 gap-y-3 pt-3">
+    <ul
+      aria-label="Restaurant service information"
+      className="grid grid-cols-3 gap-1.5 w-full pt-2.5 sm:flex sm:flex-wrap sm:gap-3"
+    >
       {details.map((detail) => (
-        <li key={detail.title} className="flex items-center gap-2 rounded-lg bg-surface/90 px-2.5 py-2">
-          <span aria-hidden="true" className={`flex size-8 shrink-0 items-center justify-center rounded-full text-white ${detail.color}`}>
-            <Icon name={detail.icon} className="size-4" />
+        <li
+          key={detail.title}
+          className="flex min-w-0 items-center gap-1.5 rounded-xl border border-border/60 bg-surface/95 px-2 py-1.5 shadow-2xs sm:gap-2 sm:px-3 sm:py-2"
+        >
+          <span
+            aria-hidden="true"
+            className={`flex size-6 shrink-0 items-center justify-center rounded-full text-white sm:size-8 ${detail.color}`}
+          >
+            <Icon name={detail.icon} className="size-3 sm:size-4" />
           </span>
-          <span>
-            <span className="block text-sm font-bold leading-snug text-dark">{detail.title}</span>
-            <span className="block text-xs leading-snug text-muted">{detail.description}</span>
+          <span className="min-w-0 flex-1">
+            <span className="block truncate text-[11px] font-bold leading-tight text-dark sm:text-sm">
+              {detail.title}
+            </span>
+            <span className="block truncate text-[9px] leading-tight text-muted sm:text-xs">
+              {detail.description}
+            </span>
           </span>
         </li>
       ))}

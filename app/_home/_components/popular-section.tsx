@@ -7,7 +7,7 @@ export function PopularSection() {
   return (
     <section aria-labelledby="popular-heading" className="w-full">
       {/* Header Row */}
-      <div className="flex items-end justify-between gap-4 mb-6">
+      <div className="flex items-end justify-between gap-4 mb-4">
         <div>
           <h2
             id="popular-heading"
@@ -30,7 +30,7 @@ export function PopularSection() {
       </div>
 
       {/* 4-Item Product Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+      <div className="grid grid-cols-2 gap-2.5 sm:gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {popularProducts.map((product) => (
           <FoodProductCard key={product.id} product={product} />
         ))}

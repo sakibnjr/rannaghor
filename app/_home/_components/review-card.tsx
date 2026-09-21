@@ -9,7 +9,7 @@ export function ReviewCard({ review }: { review: CustomerReview }) {
   return (
     <m.article
       whileHover={{ y: -3 }}
-      className="flex h-full min-h-44 flex-col rounded-2xl border border-clay-border bg-white p-4 shadow-2xs transition-shadow hover:shadow-md sm:p-5"
+      className="flex h-full min-h-36 flex-col rounded-2xl border border-clay-border bg-white p-3 shadow-2xs transition-shadow hover:shadow-md sm:p-4"
     >
       <div className="flex items-center gap-3">
         <div className="relative size-11 shrink-0 overflow-hidden rounded-full border-2 border-warm-cream bg-stone-100">

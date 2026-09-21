@@ -26,7 +26,7 @@ export function ContactForm() {
         <label className="text-sm font-bold text-dark">What is this about?<select name="topic" className={fieldClass} defaultValue="general"><option value="general">General question</option><option value="menu">Menu information</option><option value="delivery">Delivery question</option><option value="order">Existing order</option><option value="feedback">Feedback</option></select></label>
         <label className="text-sm font-bold text-dark sm:col-span-2">Message<textarea name="message" required rows={4} className={`${fieldClass} resize-y py-3`} placeholder="Tell us how we can help" /></label>
         <div className="flex flex-col items-start gap-3 sm:col-span-2 sm:flex-row sm:items-center">
-          <button type="submit" className="section-action section-action-compact bg-primary px-5 text-white hover:bg-primary-hover"><Icon name="arrow" className="size-4" /> Send message</button>
+          <button type="submit" className="section-action section-action-compact w-full bg-primary px-5 text-white hover:bg-primary-hover"><Icon name="arrow" className="size-4" /> Send message</button>
           {sent && <p role="status" className="inline-flex items-center gap-2 text-sm font-bold text-secondary"><Icon name="check" className="size-4" /> Message received. Thank you.</p>}
         </div>
       </form>

@@ -30,7 +30,7 @@ export function FeaturedOfferCard({ offer }: FeaturedOfferCardProps) {
   };
 
   return (
-    <div className="relative h-full w-full min-h-[300px] flex-1 overflow-hidden rounded-3xl border border-[#EAE2D2] bg-[#FAF3E8] shadow-2xs transition-shadow hover:shadow-md sm:min-h-[320px] sm:flex-row">
+    <div className="relative h-full w-full flex-1 overflow-hidden rounded-3xl border border-[#EAE2D2] bg-[#FAF3E8] shadow-2xs transition-shadow hover:shadow-md">
       <div className="relative order-2 h-56 w-full sm:absolute sm:inset-y-0 sm:right-0 sm:h-full sm:w-[48%]">
         <Image
           src={offer.image}
@@ -54,7 +54,7 @@ export function FeaturedOfferCard({ offer }: FeaturedOfferCardProps) {
       </div>
 
       {/* Left Content Column */}
-      <div className="relative z-10 flex h-full min-h-[300px] w-full flex-col items-start gap-2.5 p-6 sm:min-h-[320px] sm:w-[50%] sm:p-7">
+      <div className="relative z-10 flex w-full flex-col items-start gap-2.5 p-5 sm:h-full sm:min-h-[320px] sm:w-[50%] sm:p-7">
         <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-[#C02615] leading-tight">
           {offer.title}
         </h3>
@@ -74,9 +74,9 @@ export function FeaturedOfferCard({ offer }: FeaturedOfferCardProps) {
           </ul>
         )}
 
-        <div className="mt-auto pt-3">
-          {/* Price Row */}
-          <div className="flex items-baseline gap-2">
+        <div className="mt-auto flex w-full items-center gap-3 pt-3">
+          {/* Price */}
+          <div className="flex shrink-0 flex-col">
             <span className="text-xs font-medium text-stone-400 line-through sm:text-sm">
               ৳ {offer.originalPrice?.toLocaleString()}
             </span>
@@ -85,10 +85,10 @@ export function FeaturedOfferCard({ offer }: FeaturedOfferCardProps) {
             </span>
           </div>
 
-          {/* Order Now CTA Button */}
+          {/* Order Now CTA Button — fills remaining width */}
           <button
             onClick={handleOrder}
-            className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-primary px-6 py-2.5 text-xs font-semibold text-white shadow-xs transition-all hover:bg-primary-hover active:scale-98 sm:text-sm"
+            className="flex flex-1 items-center justify-center gap-1.5 rounded-full bg-primary px-4 py-2.5 text-xs font-semibold text-white shadow-xs transition-all hover:bg-primary-hover active:scale-98 sm:text-sm"
           >
             <span>Order Now</span>
             <Icon name="arrow" className="size-3.5" />

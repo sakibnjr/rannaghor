@@ -15,7 +15,7 @@ export function OffersBrowser() {
   );
 
   return (
-    <section id="all-offers" aria-labelledby="all-offers-heading" className="scroll-mt-20 py-10 sm:py-12">
+    <section id="all-offers" aria-labelledby="all-offers-heading" className="scroll-mt-20 pt-3 pb-8 sm:py-12">
       <div className="site-shell px-4 sm:px-6 lg:px-8 2xl:px-10">
         <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
@@ -25,7 +25,7 @@ export function OffersBrowser() {
           <p className="text-sm font-semibold text-secondary" role="status">{offers.length} {offers.length === 1 ? "offer" : "offers"} available</p>
         </div>
 
-        <div className="no-scrollbar mt-5 flex gap-2 overflow-x-auto pb-1" role="tablist" aria-label="Filter offers">
+        <div className="no-scrollbar mt-3 sm:mt-5 flex gap-1.5 sm:gap-2 overflow-x-auto pb-1" role="tablist" aria-label="Filter offers">
           {offerFilters.map((filter) => {
             const count = filter.id === "all" ? offerCampaigns.length : offerCampaigns.filter((offer) => offer.category === filter.id).length;
             const selected = filter.id === activeFilter;
@@ -38,7 +38,7 @@ export function OffersBrowser() {
                 onClick={() => setActiveFilter(filter.id)}
                 animate={{ scale: selected ? 1.025 : 1 }}
                 whileTap={{ scale: 0.96 }}
-                className={`min-h-10 shrink-0 rounded-xl border px-3.5 text-sm font-bold transition-colors ${selected ? "border-primary bg-primary text-white" : "border-border bg-surface text-dark hover:border-primary hover:text-primary"}`}
+                className={`min-h-8 sm:min-h-10 shrink-0 rounded-lg sm:rounded-xl border px-2.5 sm:px-3.5 text-xs sm:text-sm font-bold transition-colors ${selected ? "border-primary bg-primary text-white" : "border-border bg-surface text-dark hover:border-primary hover:text-primary"}`}
               >
                 {filter.label} <span className={selected ? "text-white/80" : "text-muted"}>({count})</span>
               </m.button>
@@ -52,7 +52,7 @@ export function OffersBrowser() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
-            className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3"
+            className="mt-3 sm:mt-5 grid grid-cols-1 gap-2.5 sm:gap-4 md:grid-cols-2 xl:grid-cols-3"
           >
             {offers.map((offer, index) => (
               <m.div

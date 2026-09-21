@@ -1,57 +1,48 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { ReactNode } from "react";
-import { PageShell } from "@/app/_components/page-shell";
+import { SiteHeader } from "@/app/_components/site-header";
+import { SiteFooter } from "@/app/_components/site-footer";
 import { restaurantImages } from "@/app/_data/imagery";
-import { Icon } from "@/app/_ui/icon";
-
-const accountBenefits = [
-  "Checkout faster with saved details",
-  "Track current and previous orders",
-  "Reorder your favourite dishes easily",
-];
 
 interface AuthPageShellProps {
   title: string;
   description: string;
   children: ReactNode;
+  cardClassName?: string;
 }
 
-export function AuthPageShell({ title, description, children }: AuthPageShellProps) {
+export function AuthPageShell({ title, description, children, cardClassName = "max-w-md" }: AuthPageShellProps) {
   return (
-    <PageShell>
-      <section className="site-shell py-5 sm:py-6">
-        <div className="grid w-full overflow-hidden rounded-3xl border border-clay-border bg-white shadow-xl shadow-dark/5 lg:grid-cols-[0.92fr_1.08fr]">
-          <div className="flex flex-col justify-center p-5 sm:p-6 lg:p-7">
-            <h1 className="text-3xl font-extrabold tracking-[-0.035em] text-dark">{title}</h1>
-            <p className="mt-2 max-w-md text-sm leading-6 text-muted sm:text-base">{description}</p>
-            <div className="mt-5">{children}</div>
-          </div>
-
-          <aside className="relative hidden min-h-[440px] overflow-hidden bg-dark lg:block" aria-label="Account benefits">
-            <Image
-              src={restaurantImages.familyFeast}
-              alt="A family-style Bangladeshi meal with biryani and grilled chicken"
-              fill
-              sizes="(min-width: 1024px) 46vw, 0px"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/45 to-dark/5" />
-            <div className="absolute inset-x-0 bottom-0 p-7 text-white">
-              <h2 className="max-w-sm text-2xl font-extrabold leading-tight tracking-tight">Good food is even better when ordering is easy.</h2>
-              <ul className="mt-5 grid gap-2.5">
-                {accountBenefits.map((benefit) => (
-                  <li key={benefit} className="flex items-center gap-3 text-sm text-white/90">
-                    <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-white/15 text-orange-200">
-                      <Icon name="check" className="size-3" />
-                    </span>
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </aside>
+    <div className="flex min-h-screen flex-col bg-brand-bg text-dark">
+      <SiteHeader />
+      <main className="relative flex flex-1 flex-col items-center justify-center px-4 py-8 sm:py-14">
+        {/* Full-bleed blurred food background */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={restaurantImages.familyFeast}
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+            aria-hidden="true"
+          />
+          {/* Warm dark overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-dark/85 via-dark/70 to-[#3B1A0A]/75 backdrop-blur-[2px]" />
         </div>
-      </section>
-    </PageShell>
+
+        {/* Floating card */}
+        <div
+          className={`relative z-10 w-full rounded-2xl border border-white/15 bg-white/95 p-5 shadow-2xl shadow-dark/40 backdrop-blur-md sm:p-8 ${cardClassName}`}
+        >
+          <h1 className="text-xl font-extrabold tracking-tight text-dark sm:text-2xl">{title}</h1>
+          <p className="mt-1 text-xs leading-normal text-muted sm:text-sm">{description}</p>
+
+          <div className="mt-5">{children}</div>
+        </div>
+      </main>
+      <SiteFooter />
+    </div>
   );
 }

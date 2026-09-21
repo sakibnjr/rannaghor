@@ -48,26 +48,26 @@ export function LoginForm() {
   return (
     <>
       {step === "phone" ? (
-        <form onSubmit={requestCode} noValidate>
+        <form onSubmit={requestCode} noValidate className="space-y-3">
           <PhoneField value={phone} onChange={(value) => { setPhone(value); setError(""); }} error={error} />
-          <button type="submit" className="section-action section-action-compact mt-4 w-full bg-primary text-white hover:bg-primary-hover">Send verification code <Icon name="arrow" className="size-4" /></button>
+          <button type="submit" className="section-action section-action-compact w-full bg-primary text-white hover:bg-primary-hover">Send verification code <Icon name="arrow" className="size-4" /></button>
         </form>
       ) : (
-        <form onSubmit={verifyCode} noValidate>
-          <div className="rounded-xl bg-clay/60 px-4 py-3 text-sm text-muted">Code sent to <strong className="text-dark">+880 {phone.replace(/^0/, "")}</strong></div>
-          <label className="mt-4 block text-sm font-bold text-dark">Verification code
-            <input name="otp" inputMode="numeric" autoComplete="one-time-code" value={otp} onChange={(event) => { setOtp(event.target.value.replace(/\D/g, "").slice(0, 6)); setError(""); }} maxLength={6} required aria-invalid={Boolean(error)} className="mt-1.5 min-h-11 w-full rounded-lg border border-border bg-white px-3.5 text-center text-lg font-bold tracking-[0.35em] outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/15" placeholder="000000" />
+        <form onSubmit={verifyCode} noValidate className="space-y-3">
+          <div className="rounded-lg bg-clay/60 px-3.5 py-2.5 text-xs text-muted">Code sent to <strong className="text-dark">+880 {phone.replace(/^0/, "")}</strong></div>
+          <label className="block text-xs font-bold text-dark">Verification code
+            <input name="otp" inputMode="numeric" autoComplete="one-time-code" value={otp} onChange={(event) => { setOtp(event.target.value.replace(/\D/g, "").slice(0, 6)); setError(""); }} maxLength={6} required aria-invalid={Boolean(error)} className="mt-1 min-h-10 w-full rounded-lg border border-border bg-white px-3 text-center text-lg font-bold tracking-[0.35em] outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/15" placeholder="000000" />
           </label>
-          {error && <p className="mt-1.5 text-xs font-medium text-red-600">{error}</p>}
-          <button type="submit" className="section-action section-action-compact mt-4 w-full bg-primary text-white hover:bg-primary-hover">Verify and sign in</button>
-          <div className="mt-3 flex items-center justify-between text-sm">
+          {error && <p className="text-xs font-medium text-red-600">{error}</p>}
+          <button type="submit" className="section-action section-action-compact w-full bg-primary text-white hover:bg-primary-hover">Verify and sign in</button>
+          <div className="flex items-center justify-between text-xs">
             <button type="button" onClick={() => { setStep("phone"); setOtp(""); setError(""); }} className="font-semibold text-secondary hover:underline">Change number</button>
             <button type="button" onClick={() => setError("")} className="font-semibold text-primary hover:underline">Resend code</button>
           </div>
         </form>
       )}
 
-      <p className="mt-5 border-t border-border pt-4 text-center text-sm text-muted">New to RannaGhor? <Link href="/register" className="font-bold text-secondary hover:underline">Create an account</Link></p>
+      <p className="mt-3.5 border-t border-border pt-3 text-center text-xs text-muted">New to RannaGhor? <Link href="/register" className="font-bold text-secondary hover:underline">Create an account</Link></p>
     </>
   );
 }

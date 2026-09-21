@@ -8,7 +8,7 @@ export function OffersSection() {
   return (
     <section aria-labelledby="offers-heading" className="w-full">
       {/* Header Row */}
-      <div className="flex items-end justify-between gap-4 mb-6">
+      <div className="flex items-end justify-between gap-4 mb-4">
         <div className="flex flex-col gap-1">
           <h2
             id="offers-heading"
@@ -31,12 +31,12 @@ export function OffersSection() {
       </div>
 
       {/* Offers Layout: Large Left (Family Feast) + 2 Stacked Right */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
         <div className="flex h-full flex-col lg:col-span-7">
           <FeaturedOfferCard offer={featuredOffer} />
         </div>
 
-        <div className="flex h-full flex-col justify-between gap-4 sm:gap-5 lg:col-span-5">
+        <div className="flex h-full flex-col justify-between gap-3 lg:col-span-5">
           {promoOffers.map((promo) => (
             <PromoOfferCard key={promo.id} offer={promo} />
           ))}

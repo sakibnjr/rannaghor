@@ -16,9 +16,6 @@ export function OfferSteps() {
             <div>
               <h2 id="offer-steps-heading" className="text-2xl font-extrabold tracking-tight sm:text-3xl">How to enjoy an offer</h2>
             </div>
-            <Link href="/menu" className="section-action section-action-compact self-start bg-dark px-4 text-white hover:bg-primary sm:self-auto">
-              Browse regular menu <Icon name="arrow" className="size-4" />
-            </Link>
           </div>
 
           <ol className="mt-6 grid gap-3 md:grid-cols-3">
@@ -33,6 +30,12 @@ export function OfferSteps() {
               </li>
             ))}
           </ol>
+
+          <div className="mt-5">
+            <Link href="/menu" className="section-action w-full bg-dark px-4 text-white hover:bg-primary sm:w-auto">
+              Browse regular menu <Icon name="arrow" className="size-4" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>

@@ -3,9 +3,10 @@ import Link from "next/link";
 
 interface LogoProps {
   variant?: "header" | "footer";
+  iconOnly?: boolean;
 }
 
-export function Logo({ variant = "header" }: LogoProps) {
+export function Logo({ variant = "header", iconOnly = false }: LogoProps) {
   const isFooter = variant === "footer";
 
   return (
@@ -30,7 +31,7 @@ export function Logo({ variant = "header" }: LogoProps) {
         aria-hidden="true"
         width={218}
         height={52}
-        className={`h-auto w-[126px] sm:w-[138px] ${isFooter ? "brightness-0 invert" : "hidden min-[390px]:block"}`}
+        className={`h-auto w-[126px] sm:w-[138px] ${iconOnly ? "hidden" : isFooter ? "brightness-0 invert" : "hidden min-[390px]:block"}`}
       />
     </Link>
   );

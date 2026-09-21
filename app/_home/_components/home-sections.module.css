@@ -12,7 +12,7 @@
 .categoryRail::-webkit-scrollbar { display: none; }
 .categoryCard {
   position: relative;
-  height: 184px;
+  height: 160px;
   overflow: hidden;
   isolation: isolate;
   border-radius: 16px;
@@ -47,8 +47,8 @@
 .reviewRailDragging { scroll-snap-type: none; scroll-behavior: auto; cursor: grabbing; user-select: none; }
 .reviewSlide { min-width: 0; scroll-snap-align: start; }
 .cta { position: relative; display: grid; overflow: hidden; border: 1px solid var(--color-border); border-radius: 24px; background: var(--color-primary-light); }
-.ctaCopy { position: relative; z-index: 10; padding: 28px; }
-.ctaPhoto { position: relative; z-index: 0; min-height: 200px; }
+.ctaCopy { position: relative; z-index: 10; padding: 22px; }
+.ctaPhoto { position: relative; z-index: 0; min-height: 160px; }
 .ctaImage { object-fit: cover; object-position: 72% center; }
 @media (hover: hover) and (pointer: fine) {
   .categoryAction { max-height: 0; opacity: 0; overflow: hidden; margin-top: 0; transition: max-height 200ms ease, opacity 200ms ease, margin 200ms ease; }
@@ -57,8 +57,8 @@
 }
 @media (min-width: 768px) {
   .reviewRail { grid-auto-columns: calc((100% - 16px) / 2); }
-  .cta { display: flex; min-height: 260px; align-items: center; }
-  .ctaCopy { width: 55%; padding: 36px 40px; }
+  .cta { display: flex; min-height: 220px; align-items: center; }
+  .ctaCopy { width: 55%; padding: 28px 36px; }
   .ctaPhoto {
     position: absolute;
     inset: 0;
@@ -69,7 +69,7 @@
 @media (min-width: 1024px) {
   .reviewRail { grid-auto-columns: calc((100% - 40px) / 3); gap: 20px; }
   .categoryRail { grid-auto-flow: initial; grid-template-columns: repeat(8, minmax(0, 1fr)); overflow: visible; }
-  .categoryCard { height: 180px; }
+  .categoryCard { height: 160px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .reviewRail { scroll-behavior: auto; }

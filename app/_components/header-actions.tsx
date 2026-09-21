@@ -16,7 +16,7 @@ export function HeaderActions() {
   return (
     <div className="flex items-center justify-self-end gap-1 sm:gap-1.5">
       {/* Search Button & Popover */}
-      <div className="relative">
+      <div className="relative hidden md:block">
         <button
           onClick={() => setShowSearch(!showSearch)}
           className="flex size-10 cursor-pointer items-center justify-center rounded-full border border-border bg-brand-bg text-dark shadow-2xs transition-colors hover:border-primary/30 hover:bg-primary-light hover:text-primary xl:size-9"
@@ -51,20 +51,20 @@ export function HeaderActions() {
         </AnimatePresence>
       </div>
 
-      {/* Login / Account */}
+      {/* Login / Account — icon only */}
       <Link
         href="/login"
-        className="hidden min-h-9 items-center gap-1.5 rounded-full border border-border bg-brand-bg px-2.5 text-sm font-semibold text-dark shadow-2xs transition-colors hover:border-primary/30 hover:bg-primary-light hover:text-primary xl:inline-flex"
+        aria-label="Account"
+        className="hidden size-10 items-center justify-center rounded-full border border-border bg-brand-bg text-dark shadow-2xs transition-colors hover:border-primary/30 hover:bg-primary-light hover:text-primary xl:flex xl:size-9"
       >
         <Icon name="account" className="size-4" />
-        <span>Account</span>
       </Link>
 
       {/* Cart Button with Count Badge */}
       <button
         type="button"
         onClick={openCart}
-        className="relative flex size-10 items-center justify-center rounded-full border border-border bg-brand-bg text-dark shadow-2xs transition-colors hover:border-primary/30 hover:bg-primary-light hover:text-primary xl:size-9"
+        className="relative hidden size-10 items-center justify-center rounded-full border border-border bg-brand-bg text-dark shadow-2xs transition-colors hover:border-primary/30 hover:bg-primary-light hover:text-primary md:flex xl:size-9"
         aria-label={`Cart with ${itemCount} items`}
         aria-haspopup="dialog"
       >

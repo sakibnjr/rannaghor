@@ -5,7 +5,7 @@ export function WhyChooseUs() {
   return (
     <section
       aria-labelledby="why-heading"
-      className="relative w-full overflow-hidden rounded-3xl border border-clay-border bg-clay px-6 py-9 text-dark shadow-sm sm:px-8 sm:py-11 lg:px-10"
+      className="relative w-full overflow-hidden rounded-3xl border border-clay-border bg-clay px-5 py-7 text-dark shadow-sm sm:px-7 sm:py-9 lg:px-10"
     >
       <div
         className="absolute -right-16 -top-20 size-56 rounded-full border-[36px] border-dark/5"
@@ -15,7 +15,7 @@ export function WhyChooseUs() {
       <div className="relative max-w-2xl">
         <h2
           id="why-heading"
-          className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl"
+          className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl"
         >
           Why choose us
         </h2>
@@ -28,7 +28,7 @@ export function WhyChooseUs() {
         />
       </div>
 
-      <ol className="relative mt-9 grid grid-cols-1 gap-y-8 border-t border-dark/10 pt-8 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-4 lg:divide-x lg:divide-dark/10">
+      <ol className="relative mt-7 grid grid-cols-1 gap-y-6 border-t border-dark/10 pt-6 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 lg:divide-x lg:divide-dark/10">
         {whyChooseUsData.map((benefit, index) => (
           <li
             key={benefit.id}
@@ -40,7 +40,7 @@ export function WhyChooseUs() {
             >
               0{index + 1}
             </span>
-            <span className="relative flex size-12 shrink-0 items-center justify-center rounded-2xl bg-primary text-white shadow-sm transition-transform group-hover:-translate-y-1">
+            <span className="relative flex size-10 shrink-0 items-center justify-center rounded-2xl bg-primary text-white shadow-sm transition-transform group-hover:-translate-y-1">
               <Icon
                 name={
                   benefit.iconType === "phone" ? "mobile" : benefit.iconType

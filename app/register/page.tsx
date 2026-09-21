@@ -9,7 +9,11 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <AuthPageShell title="Create your account" description="Use your mobile number to get started. Registration takes less than a minute.">
+    <AuthPageShell
+      title="Create your account"
+      description="Use your mobile number to get started. Registration takes less than a minute."
+      cardClassName="max-w-lg sm:max-w-xl"
+    >
       <RegistrationForm />
     </AuthPageShell>
   );

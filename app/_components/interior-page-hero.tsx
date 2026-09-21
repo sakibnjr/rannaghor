@@ -20,7 +20,7 @@ export function InteriorPageHero({
   return (
     <section
       aria-labelledby={labelledBy}
-      className="relative isolate h-[360px] overflow-hidden border-b border-border bg-brand-bg sm:h-[300px] lg:h-[280px]"
+      className="hidden sm:block relative isolate h-[360px] overflow-hidden border-b border-border bg-brand-bg sm:h-[300px] lg:h-[280px]"
     >
       <Image
         src={image}

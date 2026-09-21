@@ -28,7 +28,7 @@ export function FinalCtaSection() {
         </p>
         <Link
           href="#explore-menu"
-          className="section-action mt-6 w-fit bg-primary px-6 text-white hover:bg-primary-hover"
+          className="section-action mt-6 w-full bg-primary px-6 text-white hover:bg-primary-hover lg:w-1/2"
         >
           Order Now <Icon name="arrow" className="size-4" />
         </Link>

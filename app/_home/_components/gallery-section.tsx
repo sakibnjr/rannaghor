@@ -7,7 +7,7 @@ export function GallerySection() {
   return (
     <section aria-labelledby="gallery-heading" className="w-full">
       {/* Header Row */}
-      <div className="flex items-end justify-between gap-4 mb-6">
+      <div className="flex items-end justify-between gap-4 mb-3.5 sm:mb-4">
         <div>
           <h2
             id="gallery-heading"

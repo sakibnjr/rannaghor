@@ -17,10 +17,10 @@ export function MenuExploreCard({ item }: MenuExploreCardProps) {
   return (
     <m.div
       whileHover={{ y: -3 }}
-      className="flex items-center gap-3.5 bg-white border border-[#EAE5E1] rounded-2xl p-3 sm:p-3.5 shadow-2xs hover:shadow-md hover:border-[#E8572A]/30 transition-[border-color,box-shadow]"
+      className="flex items-center gap-3 bg-white border border-[#EAE5E1] rounded-2xl p-2.5 sm:p-3 shadow-2xs hover:shadow-md hover:border-[#E8572A]/30 transition-[border-color,box-shadow]"
     >
       {/* Food Photo */}
-      <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-stone-100 flex-shrink-0">
+      <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden bg-stone-100 flex-shrink-0">
         <Image
           src={item.image}
           alt={item.name}
@@ -53,7 +53,7 @@ export function MenuExploreCard({ item }: MenuExploreCardProps) {
             onClick={() => addToCart(item)}
             whileTap={{ scale: 0.9 }}
             aria-label={`Add ${item.name} to cart for ৳${item.price}`}
-            className="flex size-11 items-center justify-center rounded-xl bg-primary text-white shadow-2xs transition-all hover:bg-primary-hover active:scale-95"
+            className="flex size-9 items-center justify-center rounded-xl bg-primary text-white shadow-2xs transition-all hover:bg-primary-hover active:scale-95"
           >
             <Icon name="plus" />
           </m.button>

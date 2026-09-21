@@ -22,7 +22,7 @@ export function MenuExploreSection() {
   return (
     <section id="explore-menu" aria-labelledby="explore-heading" className="w-full">
       {/* Section Header & Filter Tabs */}
-      <div className="flex flex-col gap-4 mb-6">
+      <div className="flex flex-col gap-3 mb-4">
         <div>
           <h2
             id="explore-heading"
@@ -47,7 +47,7 @@ export function MenuExploreSection() {
                 aria-pressed={isActive}
                 animate={{ scale: isActive ? 1.025 : 1 }}
                 whileTap={{ scale: 0.96 }}
-                className={`min-h-11 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all cursor-pointer ${
+                className={`min-h-8 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                   isActive
                     ? "bg-[#E8572A] text-white shadow-xs"
                     : "bg-stone-100 text-[#1D2522] hover:bg-stone-200"
@@ -68,7 +68,7 @@ export function MenuExploreSection() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -6 }}
-          className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3"
         >
           {displayItems.map((item, index) => (
             <m.div
@@ -84,10 +84,10 @@ export function MenuExploreSection() {
       </AnimatePresence>
 
       {/* Bottom View Full Menu CTA */}
-      <div className="flex justify-center mt-8">
+      <div className="flex justify-center mt-4 sm:mt-5">
         <Link
           href="/menu"
-          className="inline-flex items-center gap-2 bg-white border border-[#E8572A] text-[#E8572A] hover:bg-orange-50/50 text-sm font-semibold px-6 py-2.5 rounded-full shadow-2xs transition-all active:scale-98"
+          className="inline-flex items-center gap-2 bg-white border border-[#E8572A] text-[#E8572A] hover:bg-orange-50/50 text-xs sm:text-sm font-semibold px-5 sm:px-6 py-2 sm:py-2.5 rounded-full shadow-2xs transition-all active:scale-98"
         >
           <span>View Full Menu</span>
           <Icon name="arrow" className="size-3.5" />

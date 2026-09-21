@@ -38,7 +38,7 @@ export function CategorySection() {
 
   return (
     <section aria-labelledby="categories-heading">
-      <div className="mb-5 flex items-center justify-between gap-4">
+      <div className="mb-4 flex items-center justify-between gap-4">
         <div>
           <h2 id="categories-heading" className="text-2xl font-bold tracking-tight text-dark sm:text-3xl">Food Categories</h2>
           <p className="mt-1 text-sm text-muted">Find what you’re craving.</p>
