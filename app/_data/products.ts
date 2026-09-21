@@ -15,6 +15,15 @@ export const popularProducts: Product[] = [
     categoryId: "cat-biryani",
     bestseller: true,
     available: true,
+    variants: [
+      { id: "single", name: "Single serving", price: 250 },
+      { id: "large", name: "Large serving", price: 360 },
+    ],
+    addOns: [
+      { id: "egg", name: "Boiled egg", price: 30 },
+      { id: "borhani", name: "Borhani", price: 60 },
+      { id: "salad", name: "Fresh salad", price: 40 },
+    ],
   },
   {
     id: "prod-beef-burger",
@@ -29,6 +38,15 @@ export const popularProducts: Product[] = [
     categoryId: "cat-burger",
     bestseller: true,
     available: true,
+    variants: [
+      { id: "regular", name: "Regular", price: 220 },
+      { id: "double", name: "Double patty", price: 340 },
+    ],
+    addOns: [
+      { id: "cheese", name: "Extra cheese", price: 40 },
+      { id: "fries", name: "French fries", price: 100 },
+      { id: "sauce", name: "House sauce", price: 25 },
+    ],
   },
   {
     id: "prod-prawn-fried-rice",

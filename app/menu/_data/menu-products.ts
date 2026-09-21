@@ -36,6 +36,11 @@ const additionalProducts: Product[] = [
       { id: "regular", name: "Regular", price: 480 },
       { id: "large", name: "Large", price: 650 },
     ],
+    addOns: [
+      { id: "egg", name: "Boiled egg", price: 30 },
+      { id: "borhani", name: "Borhani", price: 60 },
+      { id: "firni", name: "Shahi firni", price: 90 },
+    ],
   },
   {
     id: "menu-chicken-cheese-pizza",

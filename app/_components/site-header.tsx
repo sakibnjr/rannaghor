@@ -31,11 +31,12 @@ export function SiteHeader() {
   }
 
   return (
-    <header
-      className={`sticky top-0 z-40 w-full border-b bg-white/95 backdrop-blur-xl transition-[border-color,box-shadow] duration-200 ${
-        compact ? "border-border shadow-md shadow-dark/5" : "border-border/80 shadow-none"
-      }`}
-    >
+    <>
+      <header
+        className={`sticky top-0 z-40 w-full border-b bg-white/95 backdrop-blur-xl transition-[border-color,box-shadow] duration-200 lg:fixed lg:inset-x-0 ${
+          compact ? "border-border shadow-md shadow-dark/5" : "border-border/80 shadow-none"
+        }`}
+      >
       <div className="site-shell grid h-14 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 md:hidden">
         <div className="justify-self-start">
           <Logo iconOnly />
@@ -67,6 +68,8 @@ export function SiteHeader() {
         {/* Right: Search, Account, Cart badge, Order CTA */}
         <HeaderActions />
       </div>
-    </header>
+      </header>
+      <div aria-hidden="true" className="hidden h-14 lg:block" />
+    </>
   );
 }

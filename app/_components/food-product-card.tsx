@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
@@ -36,13 +37,15 @@ export function FoodProductCard({ product, compact = false }: { product: Product
       className={`group flex h-full flex-col overflow-hidden border border-border bg-surface shadow-2xs transition-[border-color,box-shadow] duration-300 hover:border-primary/30 hover:shadow-md ${compact ? "rounded-xl" : "rounded-2xl"}`}
     >
       <div className={`relative overflow-hidden bg-stone-100 ${compact ? "aspect-[4/3] sm:aspect-video" : "aspect-[16/11]"}`}>
-        <Image
-          src={product.image}
-          alt={product.name}
-          fill
-          sizes="(max-width: 639px) 50vw, (max-width: 1023px) 50vw, 320px"
-          className={`object-cover transition-transform duration-500 group-hover:scale-105 ${product.available ? "" : "grayscale"}`}
-        />
+        <Link href={`/menu/${product.slug}`} aria-label={`View details for ${product.name}`} className="absolute inset-0">
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            sizes="(max-width: 639px) 50vw, (max-width: 1023px) 50vw, 320px"
+            className={`object-cover transition-transform duration-500 group-hover:scale-105 ${product.available ? "" : "grayscale"}`}
+          />
+        </Link>
 
         <div className={`absolute z-10 flex flex-wrap ${compact ? "left-1.5 top-1.5 gap-1 scale-90 origin-top-left sm:scale-100 sm:left-2 sm:top-2" : "left-2 top-2 sm:left-3 sm:top-3 gap-1.5 sm:gap-2"}`}>
           {product.bestseller && <BestsellerSvgBadge />}
@@ -59,7 +62,7 @@ export function FoodProductCard({ product, compact = false }: { product: Product
 
       <div className={`flex flex-1 flex-col ${compact ? "p-2.5 sm:p-3" : "p-2.5 sm:p-4"}`}>
         <h3 className={`${compact ? "line-clamp-1 text-xs sm:text-[15px]" : "line-clamp-1 sm:line-clamp-2 text-xs sm:text-base lg:text-lg"} font-extrabold leading-tight tracking-tight text-dark transition-colors group-hover:text-primary`}>
-          {product.name}
+          <Link href={`/menu/${product.slug}`}>{product.name}</Link>
         </h3>
         <p className={`${compact ? "mt-0.5 line-clamp-1 text-[11px] leading-tight text-muted sm:text-xs sm:leading-4" : "mt-0.5 sm:mt-1 line-clamp-1 sm:line-clamp-2 text-[11px] leading-tight text-muted sm:text-sm sm:leading-5"}`}>
           {product.description}
