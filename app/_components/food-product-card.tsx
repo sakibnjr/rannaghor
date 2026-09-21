@@ -64,7 +64,7 @@ export function FoodProductCard({ product, compact = false }: { product: Product
         <h3 className={`${compact ? "line-clamp-1 text-xs sm:text-[15px]" : "line-clamp-1 sm:line-clamp-2 text-xs sm:text-base lg:text-lg"} font-extrabold leading-tight tracking-tight text-dark transition-colors group-hover:text-primary`}>
           <Link href={`/menu/${product.slug}`}>{product.name}</Link>
         </h3>
-        <p className={`${compact ? "mt-0.5 line-clamp-1 text-[11px] leading-tight text-muted sm:text-xs sm:leading-4" : "mt-0.5 sm:mt-1 line-clamp-1 sm:line-clamp-2 text-[11px] leading-tight text-muted sm:text-sm sm:leading-5"}`}>
+        <p className={`${compact ? "mt-0.5 line-clamp-1 text-[11px] font-medium leading-tight text-muted-strong sm:text-xs sm:leading-4" : "mt-0.5 sm:mt-1 line-clamp-1 sm:line-clamp-2 text-[11px] font-medium leading-tight text-muted-strong sm:text-sm sm:leading-5"}`}>
           {product.description}
         </p>
 

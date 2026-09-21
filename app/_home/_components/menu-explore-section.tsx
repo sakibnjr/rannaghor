@@ -32,7 +32,7 @@ export function MenuExploreSection() {
           >
             Explore Our Menu
           </h2>
-          <p className="text-xs sm:text-sm text-[#6B706D] mt-1">
+          <p className="mt-1 text-xs font-medium text-muted-strong sm:text-sm">
             A world of flavors, just for you.
           </p>
         </div>

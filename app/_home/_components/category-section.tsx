@@ -41,7 +41,7 @@ export function CategorySection() {
       <div className="mb-4 flex items-center justify-between gap-4">
         <div>
           <h2 id="categories-heading" className="text-2xl font-bold tracking-tight text-dark sm:text-3xl">Food Categories</h2>
-          <p className="mt-1 text-sm text-muted">Find what you’re craving.</p>
+          <p className="mt-1 text-sm font-medium text-muted-strong">Find what you’re craving.</p>
         </div>
         <div className="flex gap-2 lg:hidden">
           <button type="button" onClick={() => scroll(-1)} disabled={edges.start} aria-label="Previous categories" aria-controls="category-list" className="category-scroll-button"><Icon name="left" className="size-4" /></button>

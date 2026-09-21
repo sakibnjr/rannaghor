@@ -23,7 +23,7 @@ export function FinalCtaSection() {
         >
           Hungry already?
         </h2>
-        <p className="mt-3 max-w-sm text-base leading-relaxed text-muted">
+        <p className="mt-3 max-w-sm text-base font-medium leading-relaxed text-muted-strong">
           Your favourite meal is just a few taps away.
         </p>
         <Link

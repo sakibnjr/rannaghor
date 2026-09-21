@@ -14,7 +14,7 @@ export function GalleryHero() {
       <h1 id="gallery-page-heading" className="text-3xl font-extrabold tracking-tight text-dark sm:text-4xl">
         A glimpse inside RannaGhor.
       </h1>
-      <p className="mt-3 max-w-lg text-sm leading-6 text-muted sm:text-base">
+      <p className="mt-3 max-w-lg text-sm font-medium leading-6 text-dark/80 sm:text-base">
         From biryani leaving the kitchen to evenings shared around the table, these are the moments that make our restaurant feel like home.
       </p>
       <Link href="/menu" className="section-action section-action-compact mt-5 w-fit bg-primary px-5 text-white hover:bg-primary-hover">

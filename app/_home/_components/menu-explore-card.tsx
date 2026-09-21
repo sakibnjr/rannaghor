@@ -36,7 +36,7 @@ export function MenuExploreCard({ item }: MenuExploreCardProps) {
           <h4 className="text-sm sm:text-base font-bold text-[#1D2522] truncate tracking-tight">
             {item.name}
           </h4>
-          <p className="text-[11px] sm:text-xs text-[#6B706D] line-clamp-1 mt-0.5">
+          <p className="mt-0.5 line-clamp-1 text-[11px] font-medium text-muted-strong sm:text-xs">
             {item.description}
           </p>
         </div>

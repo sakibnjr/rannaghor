@@ -16,7 +16,7 @@ export function OffersSection() {
           >
             Special Offers
           </h2>
-          <span className="text-xs sm:text-sm text-[#6B706D]">
+          <span className="text-xs font-medium text-muted-strong sm:text-sm">
             Great food. Greater savings.
           </span>
         </div>

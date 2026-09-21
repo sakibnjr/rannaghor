@@ -19,7 +19,7 @@ export function WhyChooseUs() {
         >
           Why choose us
         </h2>
-        <p className="mt-2 text-sm leading-relaxed text-muted sm:text-base">
+        <p className="mt-2 text-sm font-medium leading-relaxed text-muted-strong sm:text-base">
           Food made carefully, delivered reliably and ordered without the fuss.
         </p>
         <span
@@ -53,7 +53,7 @@ export function WhyChooseUs() {
               <h3 className="text-base font-bold tracking-tight text-dark sm:text-lg">
                 {benefit.title}
               </h3>
-              <p className="mt-1 text-sm leading-relaxed text-muted">
+              <p className="mt-1 text-sm font-medium leading-relaxed text-muted-strong">
                 {benefit.description}
               </p>
             </div>

@@ -54,7 +54,7 @@ export function PromoOfferCard({ offer }: PromoOfferCardProps) {
             {offer.title}
           </Link>
         </h4>
-        <p className="text-[11px] sm:text-xs text-[#6B706D] line-clamp-1">
+        <p className="line-clamp-1 text-[11px] font-medium text-muted-strong sm:text-xs">
           {offer.subtitle}
         </p>
 

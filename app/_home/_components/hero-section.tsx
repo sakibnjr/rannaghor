@@ -305,7 +305,7 @@ export function HeroSection() {
                 {slide.headline.line1}
                 <span className="block text-primary">{slide.headline.line2}</span>
               </h1>
-              <p className="max-w-[390px] text-base leading-relaxed text-muted">
+              <p className="max-w-[390px] text-base font-medium leading-relaxed text-muted-strong">
                 {slide.description}
               </p>
               <div className="flex flex-wrap gap-3 pt-1">

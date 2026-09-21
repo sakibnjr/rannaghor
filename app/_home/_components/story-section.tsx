@@ -34,7 +34,7 @@ export function StorySection() {
             >
               {storyData.heading}
             </h2>
-            <p className="text-xs sm:text-sm text-[#6B706D] leading-relaxed mt-2.5">
+            <p className="mt-2.5 text-xs font-medium leading-relaxed text-muted-strong sm:text-sm">
               {storyData.paragraph}
             </p>
           </div>

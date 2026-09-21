@@ -37,7 +37,7 @@ export function LocationSection() {
           >
             Find us in Dhanmondi
           </h2>
-          <p className="mt-1.5 max-w-lg text-xs leading-relaxed text-muted">
+          <p className="mt-1.5 max-w-lg text-xs font-medium leading-relaxed text-muted-strong">
             Visit, collect your meal, or order for delivery.
           </p>
 
@@ -51,7 +51,7 @@ export function LocationSection() {
                   <p className="text-xs font-semibold leading-snug text-dark">
                     {item.label}
                   </p>
-                  <p className="text-[11px] leading-snug text-muted">
+                  <p className="text-[11px] font-medium leading-snug text-muted-strong">
                     {item.detail}
                   </p>
                 </div>

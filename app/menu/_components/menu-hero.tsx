@@ -16,7 +16,7 @@ export function MenuHero() {
       <h1 id="menu-heading" className="text-4xl font-extrabold tracking-tight text-dark sm:text-5xl">
         Find your favourite
       </h1>
-      <p className="mt-4 max-w-lg text-base leading-relaxed text-muted">
+      <p className="mt-4 max-w-lg text-base font-medium leading-relaxed text-dark/80">
         From comforting biryani to smoky grills and chilled drinks—clear prices, quick ordering and plenty to love.
       </p>
       <div className="mt-6 flex flex-wrap gap-3 text-sm">

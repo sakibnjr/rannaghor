@@ -14,7 +14,7 @@ export function OffersHero() {
       <h1 id="offers-page-heading" className="text-3xl font-extrabold tracking-tight text-dark sm:text-4xl">
         More flavour. <span className="text-primary">Better value.</span>
       </h1>
-      <p className="mt-3 max-w-lg text-sm leading-6 text-muted sm:text-base">
+      <p className="mt-3 max-w-lg text-sm font-medium leading-6 text-dark/80 sm:text-base">
         Save on family feasts, quick lunches and combos made for sharing. Every deal shows exactly what you get and what you save.
       </p>
       <div className="mt-5 flex flex-wrap gap-2.5">

@@ -14,7 +14,7 @@ export function ContactHero() {
       <h1 id="contact-page-heading" className="text-3xl font-extrabold tracking-tight text-dark sm:text-4xl">
         Let’s talk about your next meal.
       </h1>
-      <p className="mt-3 max-w-lg text-sm leading-6 text-muted sm:text-base">
+      <p className="mt-3 max-w-lg text-sm font-medium leading-6 text-dark/80 sm:text-base">
         Ask about the menu, delivery, a recent order or visiting our Dhanmondi restaurant. We will point you in the right direction.
       </p>
       <a href={`tel:${locationData.phone.replace(/\s+/g, "")}`} className="section-action section-action-compact mt-5 bg-primary px-5 text-white hover:bg-primary-hover">

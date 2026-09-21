@@ -97,7 +97,7 @@ export function ReviewsSection() {
         <h2 id="reviews-heading" className="text-2xl font-bold tracking-tight text-dark sm:text-3xl">
           Customer Reviews
         </h2>
-        <p className="mt-1 text-sm text-muted">Real experiences from people who order with us.</p>
+        <p className="mt-1 text-sm font-medium text-muted-strong">Real experiences from people who order with us.</p>
       </div>
 
       <div
