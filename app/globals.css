@@ -148,7 +148,7 @@ body {
 }
 @media (min-width: 1024px) {
   .hero-section {
-    height: calc(100dvh - 70px);
+    height: calc(100dvh - 56px);
     min-height: 520px;
   }
   .hero-content {
@@ -201,6 +201,10 @@ body {
   font-size: 14px;
   font-weight: 600;
   transition: background-color 160ms ease;
+}
+.section-action-compact {
+  min-height: 40px;
+  padding-block: 8px;
 }
 .category-scroll-button {
   display: flex;

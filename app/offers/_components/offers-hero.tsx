@@ -11,17 +11,17 @@ export function OffersHero() {
       imageAlt="A table filled with biryani, grilled chicken and drinks"
       imagePosition="66% center"
     >
-      <h1 id="offers-page-heading" className="text-4xl font-extrabold tracking-tight text-dark sm:text-5xl">
+      <h1 id="offers-page-heading" className="text-3xl font-extrabold tracking-tight text-dark sm:text-4xl">
         More flavour. <span className="text-primary">Better value.</span>
       </h1>
-      <p className="mt-4 max-w-lg text-base leading-relaxed text-muted">
+      <p className="mt-3 max-w-lg text-sm leading-6 text-muted sm:text-base">
         Save on family feasts, quick lunches and combos made for sharing. Every deal shows exactly what you get and what you save.
       </p>
-      <div className="mt-6 flex flex-wrap gap-3">
-        <Link href="#all-offers" className="section-action bg-primary px-5 text-white hover:bg-primary-hover">
+      <div className="mt-5 flex flex-wrap gap-2.5">
+        <Link href="#all-offers" className="section-action section-action-compact bg-primary px-4 text-white hover:bg-primary-hover">
           Browse offers <Icon name="arrow" className="size-4" />
         </Link>
-        <Link href="/menu" className="section-action border border-border bg-surface px-5 text-dark hover:bg-stone-50">
+        <Link href="/menu" className="section-action section-action-compact border border-border bg-surface px-4 text-dark hover:bg-stone-50">
           View full menu
         </Link>
       </div>

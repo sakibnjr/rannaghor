@@ -5,7 +5,7 @@ import { useCart } from "@/app/_components/cart-context";
 import { formatPrice } from "@/app/_lib/cart-calculations";
 import { Icon } from "@/app/_ui/icon";
 
-const fieldClass = "mt-2 min-h-12 w-full rounded-xl border border-border bg-white px-4 text-sm outline-none focus:border-secondary";
+const fieldClass = "mt-1.5 min-h-11 w-full rounded-lg border border-border bg-white px-3 text-sm outline-none focus:border-secondary";
 
 export function CheckoutForm({ onComplete }: { onComplete: (order: { id: string; total: number }) => void }) {
   const { total, clearCart } = useCart();
@@ -26,11 +26,11 @@ export function CheckoutForm({ onComplete }: { onComplete: (order: { id: string;
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-3.5">
       <CheckoutSection number="1" title="Order method">
         <div className="grid grid-cols-2 gap-3">
           {[{ value: "delivery", label: "Delivery", icon: "delivery" as const }, { value: "pickup", label: "Pickup", icon: "cloche" as const }].map((option) => (
-            <label key={option.value} className={`flex min-h-14 cursor-pointer items-center justify-center gap-2 rounded-xl border font-bold ${orderMethod === option.value ? "border-secondary bg-emerald-50 text-secondary" : "border-border bg-white"}`}>
+            <label key={option.value} className={`flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-lg border text-sm font-bold ${orderMethod === option.value ? "border-secondary bg-emerald-50 text-secondary" : "border-border bg-white"}`}>
               <input type="radio" name="order-method" value={option.value} checked={orderMethod === option.value} onChange={(event) => setOrderMethod(event.target.value)} className="sr-only" />
               <Icon name={option.icon} className="size-5" /> {option.label}
             </label>
@@ -39,7 +39,7 @@ export function CheckoutForm({ onComplete }: { onComplete: (order: { id: string;
       </CheckoutSection>
 
       <CheckoutSection number="2" title="Your details">
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-3 sm:grid-cols-2">
           <label className="text-sm font-semibold">Full name<input name="name" autoComplete="name" required className={fieldClass} placeholder="Your name" /></label>
           <label className="text-sm font-semibold">Mobile number<input name="phone" type="tel" autoComplete="tel" required className={fieldClass} placeholder="+880 1XXXXXXXXX" /></label>
         </div>
@@ -47,7 +47,7 @@ export function CheckoutForm({ onComplete }: { onComplete: (order: { id: string;
 
       {orderMethod === "delivery" && (
         <CheckoutSection number="3" title="Delivery address">
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-3 sm:grid-cols-2">
             <label className="text-sm font-semibold sm:col-span-2">Area<input name="area" required className={fieldClass} placeholder="Dhanmondi, Dhaka" /></label>
             <label className="text-sm font-semibold">Road<input name="road" required className={fieldClass} placeholder="Road number" /></label>
             <label className="text-sm font-semibold">House / Flat<input name="house" required className={fieldClass} placeholder="House, floor, flat" /></label>
@@ -59,7 +59,7 @@ export function CheckoutForm({ onComplete }: { onComplete: (order: { id: string;
       <CheckoutSection number={orderMethod === "delivery" ? "4" : "3"} title="Payment method">
         <div className="grid gap-3 sm:grid-cols-3">
           {[{ value: "cash", label: "Cash on delivery" }, { value: "bkash", label: "bKash" }, { value: "nagad", label: "Nagad" }].map((option) => (
-            <label key={option.value} className={`flex min-h-14 cursor-pointer items-center justify-center rounded-xl border px-3 text-center text-sm font-bold ${payment === option.value ? "border-secondary bg-emerald-50 text-secondary" : "border-border bg-white"}`}>
+            <label key={option.value} className={`flex min-h-11 cursor-pointer items-center justify-center rounded-lg border px-3 text-center text-sm font-bold ${payment === option.value ? "border-secondary bg-emerald-50 text-secondary" : "border-border bg-white"}`}>
               <input type="radio" name="payment" value={option.value} checked={payment === option.value} onChange={(event) => setPayment(event.target.value)} className="sr-only" />
               {option.label}
             </label>
@@ -67,7 +67,7 @@ export function CheckoutForm({ onComplete }: { onComplete: (order: { id: string;
         </div>
       </CheckoutSection>
 
-      <button type="submit" disabled={submitting} className="section-action w-full bg-primary text-base text-white hover:bg-primary-hover disabled:opacity-60">
+      <button type="submit" disabled={submitting} className="section-action section-action-compact w-full bg-primary text-white hover:bg-primary-hover disabled:opacity-60">
         {submitting ? "Placing order…" : `Place order • ${formatPrice(total)}`}
       </button>
     </form>
@@ -76,9 +76,9 @@ export function CheckoutForm({ onComplete }: { onComplete: (order: { id: string;
 
 function CheckoutSection({ number, title, children }: { number: string; title: string; children: ReactNode }) {
   return (
-    <fieldset className="rounded-3xl border border-border bg-white p-5 shadow-sm sm:p-6">
-      <legend className="px-1 text-lg font-extrabold"><span className="mr-2 inline-flex size-7 items-center justify-center rounded-full bg-primary text-xs text-white">{number}</span>{title}</legend>
-      <div className="mt-4">{children}</div>
+    <fieldset className="rounded-2xl border border-border bg-white p-4 shadow-sm sm:px-5 sm:py-4">
+      <legend className="px-1 text-base font-extrabold"><span className="mr-2 inline-flex size-6 items-center justify-center rounded-full bg-primary text-xs text-white">{number}</span>{title}</legend>
+      <div className="mt-2.5">{children}</div>
     </fieldset>
   );
 }

@@ -23,10 +23,10 @@ export function MobileNavDrawer() {
   ];
 
   return (
-    <div className="lg:hidden">
+    <div className="xl:hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="p-2 text-[#1D2522] hover:text-[#E8572A] rounded-lg cursor-pointer"
+        className="flex size-10 cursor-pointer items-center justify-center rounded-full border border-border bg-brand-bg text-dark shadow-2xs transition-colors hover:border-primary/30 hover:bg-primary-light hover:text-primary"
         aria-label={isOpen ? "Close menu" : "Open menu"}
         aria-expanded={isOpen}
       >
@@ -39,7 +39,7 @@ export function MobileNavDrawer() {
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
-          className="fixed inset-x-0 top-[65px] z-50 border-b border-[#EAE5E1] bg-white p-5 shadow-xl"
+          className="fixed inset-x-0 top-14 z-50 border-b border-border bg-white p-5 shadow-xl"
         >
           <nav className="flex flex-col gap-3">
             {links.map((link) => {

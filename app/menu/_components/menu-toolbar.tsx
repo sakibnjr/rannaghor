@@ -17,11 +17,11 @@ interface MenuToolbarProps {
 
 export function MenuToolbar(props: MenuToolbarProps) {
   return (
-    <div className="sticky top-16 z-30 border-b border-border bg-brand-bg/95 py-3 backdrop-blur-md sm:top-[70px]">
+    <div className="sticky top-14 z-30 border-b border-border bg-brand-bg/95 py-2 backdrop-blur-md">
       <div className="site-shell">
-        <div className="rounded-2xl border border-border bg-white p-2.5 shadow-2xs sm:p-3">
-          <div className="grid gap-2.5 lg:grid-cols-[minmax(0,1fr)_220px_160px]">
-            <label className="flex min-h-11 items-center gap-3 rounded-xl border border-border bg-brand-bg px-4 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/10">
+        <div className="rounded-xl border border-border bg-white p-2 shadow-2xs">
+          <div className="grid gap-2 lg:grid-cols-[minmax(0,1fr)_210px_160px]">
+            <label className="flex min-h-9 items-center gap-2.5 rounded-lg border border-border bg-brand-bg px-3 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/10">
               <Icon name="search" className="size-4.5 text-muted" />
               <span className="sr-only">Search the menu</span>
               <input
@@ -33,7 +33,7 @@ export function MenuToolbar(props: MenuToolbarProps) {
               />
             </label>
 
-            <label className="flex min-h-11 items-center gap-2 rounded-xl border border-border bg-brand-bg px-3.5 text-sm focus-within:border-primary">
+            <label className="flex min-h-9 items-center gap-2 rounded-lg border border-border bg-brand-bg px-3 text-sm focus-within:border-primary">
               <span className="shrink-0 text-xs font-semibold text-muted">Sort by</span>
               <select
                 aria-label="Sort dishes"
@@ -54,7 +54,7 @@ export function MenuToolbar(props: MenuToolbarProps) {
               onClick={() => props.onAvailabilityChange(!props.availableOnly)}
               animate={{ scale: props.availableOnly ? 1.015 : 1 }}
               whileTap={{ scale: 0.97 }}
-              className={`inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-xl border px-4 text-sm font-bold transition-colors ${
+              className={`inline-flex min-h-9 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border px-3 text-sm font-bold transition-colors ${
                 props.availableOnly
                   ? "border-primary bg-primary text-white"
                   : "border-border bg-brand-bg text-dark hover:border-primary hover:text-primary"
@@ -65,7 +65,7 @@ export function MenuToolbar(props: MenuToolbarProps) {
           </div>
 
           <div
-            className="no-scrollbar mt-2.5 flex gap-2 overflow-x-auto lg:grid lg:grid-flow-col lg:auto-cols-fr lg:overflow-visible"
+            className="no-scrollbar mt-2 flex gap-1.5 overflow-x-auto lg:grid lg:grid-flow-col lg:auto-cols-fr lg:overflow-visible"
             aria-label="Menu categories"
           >
             {props.categories.map((item) => {
@@ -78,7 +78,7 @@ export function MenuToolbar(props: MenuToolbarProps) {
                   onClick={() => props.onCategoryChange(item.id)}
                   animate={{ scale: active ? 1.025 : 1 }}
                   whileTap={{ scale: 0.96 }}
-                  className={`min-h-10 shrink-0 whitespace-nowrap rounded-xl px-3 text-xs font-bold transition-colors lg:min-w-0 lg:px-2 ${
+                  className={`min-h-9 shrink-0 whitespace-nowrap rounded-lg px-2.5 text-[11px] font-bold transition-colors lg:min-w-0 lg:px-1.5 ${
                     active
                       ? "bg-primary text-white shadow-sm"
                       : "border border-border bg-white text-dark hover:border-primary hover:text-primary"

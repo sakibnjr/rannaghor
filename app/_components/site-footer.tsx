@@ -1,142 +1,113 @@
-import { Icon } from "@/app/_ui/icon";
 import Link from "next/link";
-import { rannaGhorConfig } from "@/app/_data/restaurant";
 import { BrandSignature } from "@/app/_components/brand-signature";
 import { Logo } from "@/app/_components/logo";
+import { rannaGhorConfig } from "@/app/_data/restaurant";
+import { Icon } from "@/app/_ui/icon";
+
+const restaurantLinks = [
+  { label: "Home", href: "/" },
+  { label: "Menu", href: "/menu" },
+  { label: "Offers", href: "/offers" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+
+const customerLinks = [
+  { label: "My account", href: "/login" },
+  { label: "View cart", href: "/cart" },
+  { label: "Checkout", href: "/checkout" },
+  { label: "Track order", href: "#" },
+  { label: "Delivery information", href: "#" },
+  { label: "Help & FAQs", href: "#" },
+];
+
+const legalLinks = ["Terms & Conditions", "Privacy Policy", "Refund Policy", "Cookie Policy"];
+const socialLinks = ["facebook", "instagram", "youtube", "tiktok"] as const;
+
+function FooterLinkGroup({ title, links }: { title: string; links: { label: string; href: string }[] }) {
+  return (
+    <nav aria-label={`${title} links`}>
+      <h2 className="text-xs font-bold uppercase tracking-[0.18em] text-orange-200">{title}</h2>
+      <ul className="mt-3 grid gap-1.5 text-sm text-stone-300">
+        {links.map((link) => (
+          <li key={link.label}>
+            <Link href={link.href} className="inline-flex min-h-5 items-center transition-colors hover:text-white">
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
 
 export function SiteFooter() {
   const taglineWords = rannaGhorConfig.tagline.split(" ");
-  const signatureFirstLine = taglineWords.slice(0, 2).join(" ");
-  const signatureSecondLine = taglineWords.slice(2).join(" ");
+  const address = [rannaGhorConfig.address.street, rannaGhorConfig.address.area, rannaGhorConfig.address.city]
+    .filter(Boolean)
+    .join(", ");
 
   return (
-    <footer className="w-full border-t border-emerald-950 bg-[#0D382E] pb-8 pt-14 text-stone-200">
+    <footer className="w-full border-t border-emerald-950 bg-[#0D382E] text-stone-200">
       <div className="site-shell">
-        {/* Main 5-Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 pb-12 border-b border-emerald-800/40">
-          {/* Col 1: Brand & Socials (4 cols) */}
-          <div className="lg:col-span-4 flex flex-col gap-4">
+        <div className="grid gap-8 py-8 md:grid-cols-2 lg:grid-cols-12 lg:gap-7 lg:py-9">
+          <div className="md:col-span-2 lg:col-span-4">
             <Logo variant="footer" />
-            <p className="text-xs text-stone-300 max-w-sm leading-relaxed">
-              Authentic flavors. Fresh ingredients. Happier people. From our
-              kitchen to your table, always with love.
+            <p className="mt-4 max-w-sm text-sm leading-5 text-stone-300">
+              {rannaGhorConfig.heroSubtext}
             </p>
-            {/* Social Icons */}
-            <div className="flex items-center gap-2 pt-1">
-              {(["facebook", "instagram", "youtube", "tiktok"] as const).map(
-                (s) => (
-                  <span
-                    key={s}
-                    role="img"
-                    aria-label={s}
-                    className="flex size-9 items-center justify-center rounded-lg bg-white/10 text-white"
-                  >
-                    <Icon name={s} className="size-4" />
-                  </span>
-                ),
-              )}
-            </div>
-          </div>
-
-          {/* Col 2: Restaurant (2 cols) */}
-          <div className="lg:col-span-2 flex flex-col gap-2.5">
-            <h4 className="text-sm font-bold text-white tracking-wide">
-              Restaurant
-            </h4>
-            <ul className="space-y-1.5 text-xs text-stone-300">
-              {["Home", "Menu", "Offers", "Gallery", "About", "Contact"].map(
-                (item) => (
-                  <li key={item}>
-                    <Link
-                      href={`/${item.toLowerCase() === "home" ? "" : item.toLowerCase()}`}
-                      className="hover:text-[#E8572A] transition-colors"
-                    >
-                      {item}
-                    </Link>
-                  </li>
-                ),
-              )}
-            </ul>
-          </div>
-
-          {/* Col 3: Customer (2 cols) */}
-          <div className="lg:col-span-2 flex flex-col gap-2.5">
-            <h4 className="text-sm font-bold text-white tracking-wide">
-              Customer
-            </h4>
-            <ul className="space-y-1.5 text-xs text-stone-300">
-              {[
-                "My Account",
-                "Track Order",
-                "Delivery Info",
-                "FAQs",
-                "Reviews",
-                "Support",
-              ].map((item) => (
-                <li key={item}>
-                  <Link
-                    href="#"
-                    className="hover:text-[#E8572A] transition-colors"
-                  >
-                    {item}
-                  </Link>
-                </li>
+            <nav className="mt-5 flex items-center gap-1.5" aria-label="Social media">
+              {socialLinks.map((social) => (
+                <a
+                  key={social}
+                  href="#"
+                  aria-label={social[0].toUpperCase() + social.slice(1)}
+                  className="flex size-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.07] text-white transition-[background-color,border-color,transform] hover:-translate-y-0.5 hover:border-primary/60 hover:bg-primary"
+                >
+                  <Icon name={social} className="size-3.5" />
+                </a>
               ))}
-            </ul>
+            </nav>
           </div>
 
-          {/* Col 4: Legal (2 cols) */}
-          <div className="lg:col-span-2 flex flex-col gap-2.5">
-            <h4 className="text-sm font-bold text-white tracking-wide">
-              Legal
-            </h4>
-            <ul className="space-y-1.5 text-xs text-stone-300">
-              {[
-                "Terms & Conditions",
-                "Privacy Policy",
-                "Refund Policy",
-                "Cookie Policy",
-              ].map((item) => (
-                <li key={item}>
-                  <Link
-                    href="#"
-                    className="hover:text-[#E8572A] transition-colors"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <div className="grid grid-cols-2 gap-6 md:col-span-1 lg:col-span-5 lg:grid-cols-2">
+            <FooterLinkGroup title="Restaurant" links={restaurantLinks} />
+            <FooterLinkGroup title="For customers" links={customerLinks} />
           </div>
 
-          {/* Col 5: Contact Us (2 cols) */}
-          <div className="lg:col-span-2 flex flex-col gap-2 text-xs text-stone-300">
-            <h4 className="text-sm font-bold text-white tracking-wide mb-0.5">
-              Contact Us
-            </h4>
-            <p className="hover:text-white transition-colors">
-              +880 1712 345678
-            </p>
-            <p className="hover:text-white transition-colors truncate">
-              hello@rannaghorbd.com
-            </p>
-            <p>Dhanmondi, Dhaka</p>
-            <p className="text-[11px] text-stone-400">
-              Open Daily: 10:00 AM – 11:00 PM
-            </p>
-            <div className="mt-5 self-center pr-5 lg:self-end">
-              <BrandSignature
-                variant="footer"
-                firstLine={signatureFirstLine}
-                secondLine={signatureSecondLine}
-              />
+          <aside className="md:col-span-1 lg:col-span-3" aria-label="Restaurant contact information">
+            <h2 className="text-xs font-bold uppercase tracking-[0.18em] text-orange-200">Visit or call</h2>
+            <div className="relative mt-3 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06] p-5">
+              <div className="absolute -right-10 -top-12 size-36 rounded-full border-[24px] border-white/[0.035]" aria-hidden="true" />
+              <div className="relative grid gap-3 text-sm">
+                <a href={`tel:${rannaGhorConfig.contact.phone.replace(/\s/g, "")}`} className="flex items-start gap-3 text-white hover:text-orange-200">
+                  <Icon name="phone" className="mt-0.5 size-4 text-primary" />
+                  <span className="font-semibold">{rannaGhorConfig.contact.phone}</span>
+                </a>
+                {rannaGhorConfig.contact.email && (
+                  <a href={`mailto:${rannaGhorConfig.contact.email}`} className="flex items-start gap-3 text-stone-300 hover:text-white">
+                    <Icon name="mail" className="mt-0.5 size-4 text-primary" />
+                    <span className="break-all">{rannaGhorConfig.contact.email}</span>
+                  </a>
+                )}
+                <p className="flex items-start gap-3 text-stone-300">
+                  <Icon name="pin" className="mt-0.5 size-4 text-primary" />
+                  <span>{address}</span>
+                </p>
+              </div>
+              <div className="relative mt-5 flex justify-center">
+                <BrandSignature variant="footer" firstLine={taglineWords.slice(0, 2).join(" ")} secondLine={taglineWords.slice(2).join(" ")} />
+              </div>
             </div>
-          </div>
+          </aside>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="flex items-center pt-6 text-xs text-stone-400">
-          <p>© {new Date().getFullYear()} RannaGhor. All rights reserved.</p>
+        <div className="flex flex-col gap-3 border-t border-white/10 pb-6 pt-4 text-xs text-stone-400 sm:flex-row sm:items-center sm:justify-between sm:pb-7">
+          <p>&copy; {new Date().getFullYear()} RannaGhor. All rights reserved.</p>
+          <nav aria-label="Legal" className="flex flex-wrap gap-x-4 gap-y-1.5">
+            {legalLinks.map((link) => <Link key={link} href="#" className="hover:text-white">{link}</Link>)}
+          </nav>
         </div>
       </div>
     </footer>

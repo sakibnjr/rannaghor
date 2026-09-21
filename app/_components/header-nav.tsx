@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import * as m from "motion/react-m";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
@@ -17,27 +16,21 @@ export function HeaderNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="hidden lg:flex items-center gap-7">
+    <nav aria-label="Primary navigation" className="hidden h-full items-stretch justify-self-center xl:flex">
       {NAV_LINKS.map((link) => {
         const active = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
         return (
           <Link
             key={link.label}
             href={link.href}
-            className={`relative py-1 text-sm font-medium transition-colors hover:text-[#E8572A] ${
-              active ? "text-[#E8572A] font-semibold" : "text-[#1D2522]"
+            className={`relative inline-flex h-full items-center px-3 text-sm transition-colors after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:origin-center after:bg-primary after:transition-transform after:duration-200 ${
+              active
+                ? "font-bold text-primary after:scale-x-100"
+                : "font-medium text-dark after:scale-x-0 hover:text-primary hover:after:scale-x-100"
             }`}
+            aria-current={active ? "page" : undefined}
           >
             {link.label}
-            {active && (
-              <m.span
-                initial={{ scaleX: 0, opacity: 0 }}
-                animate={{ scaleX: 1, opacity: 1 }}
-                transition={{ duration: 0.22 }}
-                className="absolute -bottom-1.5 left-0 right-0 h-[2.5px] bg-[#E8572A] rounded-full"
-                aria-hidden="true"
-              />
-            )}
           </Link>
         );
       })}

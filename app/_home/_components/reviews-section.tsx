@@ -1,9 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, type PointerEvent } from "react";
-import * as m from "motion/react-m";
-import { customerReviews, reviewsSummary } from "@/app/_data/reviews";
-import { Icon } from "@/app/_ui/icon";
+import { customerReviews } from "@/app/_data/reviews";
 import { ReviewCard } from "./review-card";
 import styles from "./home-sections.module.css";
 
@@ -11,7 +9,7 @@ export function ReviewsSection() {
   const railRef = useRef<HTMLDivElement>(null);
   const dragRef = useRef({ active: false, startX: 0, startScroll: 0 });
   const metricsRef = useRef({ step: 1, visible: 1 });
-  const [activePage, setActivePage] = useState(0);
+  const [, setActivePage] = useState(0);
   const [pageCount, setPageCount] = useState(1);
   const [paused, setPaused] = useState(false);
   const [dragging, setDragging] = useState(false);
@@ -127,38 +125,6 @@ export function ReviewsSection() {
         ))}
       </div>
 
-      <div className="mt-3 flex flex-col items-center justify-center gap-1 sm:flex-row sm:gap-4">
-        <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-center">
-          <strong className="text-base text-dark">{reviewsSummary.score} / {reviewsSummary.totalStars}</strong>
-          <div className="flex gap-0.5" aria-hidden="true">
-            {Array.from({ length: reviewsSummary.totalStars }).map((_, index) => (
-              <Icon key={index} name="star" className="size-3.5 text-rating" />
-            ))}
-          </div>
-          <span className="text-[11px] text-muted">{reviewsSummary.displayCount}</span>
-        </div>
-
-        <div className="flex justify-center" aria-label="Choose review page">
-          {Array.from({ length: pageCount }).map((_, index) => (
-            <button
-              key={index}
-              type="button"
-              onClick={() => goToPage(index)}
-              className="flex size-7 items-center justify-center rounded-full"
-              aria-label={`Show review page ${index + 1}`}
-              aria-current={activePage === index ? "true" : undefined}
-            >
-              <m.span
-                animate={{
-                  width: activePage === index ? 22 : 8,
-                  backgroundColor: activePage === index ? "var(--color-primary)" : "var(--color-border)",
-                }}
-                className="block h-2 rounded-full"
-              />
-            </button>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }

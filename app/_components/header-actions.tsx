@@ -14,13 +14,14 @@ export function HeaderActions() {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <div className="flex items-center gap-3 sm:gap-4">
+    <div className="flex items-center justify-self-end gap-1 sm:gap-1.5">
       {/* Search Button & Popover */}
       <div className="relative">
         <button
           onClick={() => setShowSearch(!showSearch)}
-          className="flex size-11 items-center justify-center p-2 text-[#1D2522] hover:text-[#E8572A] hover:bg-stone-100 rounded-full transition-colors cursor-pointer"
+          className="flex size-10 cursor-pointer items-center justify-center rounded-full border border-border bg-brand-bg text-dark shadow-2xs transition-colors hover:border-primary/30 hover:bg-primary-light hover:text-primary xl:size-9"
           aria-label="Search food"
+          aria-expanded={showSearch}
         >
           <Icon name="search" />
         </button>
@@ -31,7 +32,7 @@ export function HeaderActions() {
             initial={{ opacity: 0, y: -8, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.98 }}
-            className="absolute right-0 top-12 z-50 w-72 rounded-2xl border border-[#EAE5E1] bg-white p-2 shadow-xl"
+            className="absolute right-0 top-12 z-50 w-72 rounded-2xl border border-border bg-white p-2 shadow-xl"
           >
             <div className="flex items-center gap-2 px-3 py-1.5 bg-stone-50 rounded-xl">
               <Icon name="search" />
@@ -53,17 +54,17 @@ export function HeaderActions() {
       {/* Login / Account */}
       <Link
         href="/login"
-        className="hidden md:flex items-center gap-1.5 text-sm font-medium text-[#1D2522] hover:text-[#E8572A] transition-colors py-1"
+        className="hidden min-h-9 items-center gap-1.5 rounded-full border border-border bg-brand-bg px-2.5 text-sm font-semibold text-dark shadow-2xs transition-colors hover:border-primary/30 hover:bg-primary-light hover:text-primary xl:inline-flex"
       >
-        <Icon name="account" />
-        <span>Login / Account</span>
+        <Icon name="account" className="size-4" />
+        <span>Account</span>
       </Link>
 
       {/* Cart Button with Count Badge */}
       <button
         type="button"
         onClick={openCart}
-        className="relative flex size-11 items-center justify-center p-2 text-[#1D2522] hover:text-[#E8572A] transition-colors"
+        className="relative flex size-10 items-center justify-center rounded-full border border-border bg-brand-bg text-dark shadow-2xs transition-colors hover:border-primary/30 hover:bg-primary-light hover:text-primary xl:size-9"
         aria-label={`Cart with ${itemCount} items`}
         aria-haspopup="dialog"
       >
@@ -86,9 +87,9 @@ export function HeaderActions() {
       {/* Order Now CTA Button */}
       <Link
         href="/menu"
-        className="inline-flex items-center justify-center bg-[#E8572A] text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-xs hover:bg-[#D24519] hover:shadow-md active:scale-98 transition-all"
+        className="hidden min-h-10 items-center justify-center gap-1.5 rounded-full bg-primary px-4 text-sm font-bold text-white shadow-sm transition-[background-color,box-shadow,transform] hover:bg-primary-hover hover:shadow-md active:scale-[0.98] sm:inline-flex xl:min-h-9 xl:px-3.5"
       >
-        Order Now
+        Order Now <Icon name="arrow" className="size-3.5" />
       </Link>
     </div>
   );

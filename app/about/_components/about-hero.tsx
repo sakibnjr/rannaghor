@@ -11,17 +11,17 @@ export function AboutHero() {
       imageAlt="A RannaGhor chef carefully preparing a dish"
       imagePosition="72% center"
     >
-      <h1 id="about-page-heading" className="text-4xl font-extrabold tracking-tight text-dark sm:text-5xl">
+      <h1 id="about-page-heading" className="text-3xl font-extrabold tracking-tight text-dark sm:text-4xl">
         Rooted in Bangladesh. Made for today.
       </h1>
-      <p className="mt-4 max-w-lg text-base leading-relaxed text-muted">
+      <p className="mt-3 max-w-lg text-sm leading-6 text-muted sm:text-base">
         Familiar Bangladeshi food, prepared carefully and served warmly, can turn an ordinary meal into time well spent.
       </p>
-      <div className="mt-6 flex flex-wrap gap-3">
-        <Link href="/menu" className="section-action bg-primary px-6 text-white hover:bg-primary-hover">
+      <div className="mt-5 flex flex-wrap gap-2.5">
+        <Link href="/menu" className="section-action section-action-compact bg-primary px-5 text-white hover:bg-primary-hover">
           Explore our menu <Icon name="arrow" className="size-4" />
         </Link>
-        <Link href="/contact" className="section-action border border-border bg-white px-6 text-dark hover:bg-stone-50">
+        <Link href="/contact" className="section-action section-action-compact border border-border bg-white px-5 text-dark hover:bg-stone-50">
           Visit us
         </Link>
       </div>

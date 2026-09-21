@@ -59,8 +59,8 @@ export function MenuBrowser() {
         onAvailabilityChange={setAvailableOnly}
       />
 
-      <div className="site-shell pb-12 pt-5 sm:pb-16 sm:pt-6">
-        <div className="mb-6 flex items-end justify-between gap-4">
+      <div className="site-shell pb-12 pt-4 sm:pb-16 sm:pt-4">
+        <div className="mb-4 flex items-end justify-between gap-4">
           <div>
             <h2 id="menu-results-heading" className="text-2xl font-bold tracking-tight text-dark sm:text-3xl">
               {category === "all" ? "All dishes" : menuCategories.find((item) => item.id === category)?.label}
@@ -76,7 +76,7 @@ export function MenuBrowser() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
-              className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+              className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5"
             >
               {products.map((product, index) => (
                 <m.div
@@ -85,7 +85,7 @@ export function MenuBrowser() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: Math.min(index, 7) * 0.035 }}
                 >
-                  <FoodProductCard product={product} />
+                  <FoodProductCard product={product} compact />
                 </m.div>
               ))}
             </m.div>

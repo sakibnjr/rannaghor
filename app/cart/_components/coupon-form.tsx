@@ -15,7 +15,7 @@ export function CouponForm() {
 
   if (couponCode) {
     return (
-      <div className="flex items-center justify-between rounded-xl bg-emerald-50 px-3 py-2.5 text-sm text-secondary">
+      <div className="flex items-center justify-between rounded-lg bg-emerald-50 px-3 py-2 text-sm text-secondary">
         <span className="flex items-center gap-2 font-semibold">
           <Icon name="check" className="size-4" />
           {couponCode} applied
@@ -36,17 +36,17 @@ export function CouponForm() {
           value={code}
           onChange={(event) => setCode(event.target.value)}
           placeholder="Coupon code"
-          className="min-w-0 flex-1 rounded-xl border border-border bg-white px-3 text-sm uppercase outline-none placeholder:normal-case focus:border-secondary"
+          className="min-h-10 min-w-0 flex-1 rounded-lg border border-border bg-white px-3 text-sm uppercase outline-none placeholder:normal-case focus:border-secondary"
         />
         <button
           type="submit"
           disabled={!code.trim()}
-          className="min-h-11 rounded-xl bg-dark px-4 text-sm font-bold text-white hover:bg-secondary disabled:cursor-not-allowed disabled:opacity-40"
+          className="min-h-10 rounded-lg bg-dark px-3.5 text-sm font-bold text-white hover:bg-secondary disabled:cursor-not-allowed disabled:opacity-40"
         >
           Apply
         </button>
       </form>
-      <p className="mt-2 text-xs text-muted">Try WELCOME10 or RANNA100.</p>
+      <p className="mt-1.5 text-xs text-muted">Try WELCOME10 or RANNA100.</p>
       {couponFeedback && (
         <p
           role="status"

@@ -30,7 +30,7 @@ export function Logo({ variant = "header" }: LogoProps) {
         aria-hidden="true"
         width={218}
         height={52}
-        className={`h-auto w-[126px] sm:w-[138px] ${isFooter ? "brightness-0 invert" : ""}`}
+        className={`h-auto w-[126px] sm:w-[138px] ${isFooter ? "brightness-0 invert" : "hidden min-[390px]:block"}`}
       />
     </Link>
   );
