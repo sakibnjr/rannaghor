@@ -76,17 +76,14 @@ export function CartDrawer() {
           transition={{ duration: 0.3 }}
           className="absolute inset-y-0 right-0 flex w-full flex-col bg-brand-bg shadow-2xl sm:max-w-[460px]"
         >
-        <header className="flex min-h-20 items-center justify-between border-b border-border bg-white px-5 sm:px-6">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Your order</p>
-            <h2 id="cart-drawer-title" className="mt-0.5 text-xl font-extrabold text-dark">
-              Cart <span className="text-base font-medium text-muted">({itemCount})</span>
-            </h2>
-          </div>
+        <header className="flex h-16 shrink-0 items-center justify-between border-b border-border bg-white px-5 sm:px-6">
+          <h2 id="cart-drawer-title" className="text-xl font-extrabold text-dark">
+            Cart <span className="text-base font-medium text-muted">({itemCount})</span>
+          </h2>
           <button
             type="button"
             onClick={closeCart}
-            className="flex size-11 items-center justify-center rounded-full border border-border bg-white text-dark hover:border-primary hover:text-primary"
+            className="flex size-10 items-center justify-center rounded-full border border-border bg-white text-dark hover:border-primary hover:text-primary transition-colors"
             aria-label="Close cart"
           >
             <Icon name="close" className="size-4" />
@@ -99,20 +96,23 @@ export function CartDrawer() {
           <div className="flex flex-1 items-center justify-center"><CartEmpty onAction={closeCart} /></div>
         ) : (
           <>
-            <div className="flex-1 overflow-y-auto px-5 sm:px-6">
+            {/* Scrollable Cart Items List - Independent scroll container with room for 2+ cards */}
+            <div className="custom-scrollbar flex-1 min-h-[200px] overflow-y-auto px-5 sm:px-6">
               <div className="divide-y divide-border">
                 <AnimatePresence initial={false}>
                   {items.map((item) => <CartItemRow key={item.key} item={item} compact />)}
                 </AnimatePresence>
               </div>
             </div>
-            <footer className="border-t border-border bg-white px-5 py-5 sm:px-6">
-              <CartSummary onCheckout={closeCart} />
-              <div className="mt-3 flex items-center justify-between text-xs">
-                <Link href="/cart" onClick={closeCart} className="font-bold text-secondary underline underline-offset-4">
+
+            {/* Pinned Footer with Order Summary and Checkout */}
+            <footer className="shrink-0 border-t border-border bg-white px-5 py-3.5 sm:px-6 shadow-[0_-4px_16px_rgba(0,0,0,0.04)]">
+              <CartSummary onCheckout={closeCart} compact />
+              <div className="mt-2.5 flex items-center justify-between text-xs pt-2 border-t border-border/60">
+                <Link href="/cart" onClick={closeCart} className="font-bold text-secondary underline underline-offset-4 hover:text-primary">
                   View full cart
                 </Link>
-                <button type="button" onClick={clearCart} className="font-semibold text-muted hover:text-primary">
+                <button type="button" onClick={clearCart} className="font-semibold text-muted hover:text-primary transition-colors">
                   Clear cart
                 </button>
               </div>

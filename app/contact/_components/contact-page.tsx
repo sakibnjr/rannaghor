@@ -10,7 +10,7 @@ export function ContactPage() {
     <PageShell>
       <ContactHero />
       <Reveal>
-        <div className="site-shell grid gap-5 pt-3 pb-8 sm:py-12 lg:grid-cols-[0.72fr_1.28fr]">
+        <div className="site-shell grid gap-5 py-6 sm:py-7 lg:py-8 lg:grid-cols-[0.72fr_1.28fr]">
           <ContactDetails />
           <ContactForm />
         </div>

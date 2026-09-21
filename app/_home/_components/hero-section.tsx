@@ -3,7 +3,13 @@
 import { Icon } from "@/app/_ui/icon";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState, useCallback } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
 import { rannaGhorConfig } from "@/app/_data/restaurant";
@@ -15,6 +21,7 @@ export function HeroSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const swipeStartX = useRef<number | null>(null);
   const slide = heroSlides[activeIndex];
 
   const handlePrev = useCallback(() => {
@@ -24,6 +31,39 @@ export function HeroSection() {
   const handleNext = useCallback(() => {
     setActiveIndex((index) => (index + 1) % heroSlides.length);
   }, []);
+
+  function handleSwipeStart(event: ReactPointerEvent<HTMLElement>) {
+    if (!event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+    if ((event.target as HTMLElement).closest("a, button, input, textarea, select")) return;
+
+    swipeStartX.current = event.clientX;
+    event.currentTarget.setPointerCapture(event.pointerId);
+    setIsPaused(true);
+  }
+
+  function handleSwipeEnd(event: ReactPointerEvent<HTMLElement>) {
+    if (swipeStartX.current === null) return;
+
+    const distance = event.clientX - swipeStartX.current;
+    swipeStartX.current = null;
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+
+    if (Math.abs(distance) >= 45) {
+      if (distance < 0) handleNext();
+      else handlePrev();
+    }
+    setIsPaused(false);
+  }
+
+  function handleSwipeCancel(event: ReactPointerEvent<HTMLElement>) {
+    swipeStartX.current = null;
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+    setIsPaused(false);
+  }
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -49,9 +89,12 @@ export function HeroSection() {
         aria-labelledby="mobile-hero-heading"
         aria-roledescription="carousel"
         aria-label="Featured meals and offers"
-        className="lg:hidden site-shell px-3 pt-3 pb-0"
+        className="site-shell cursor-grab touch-pan-y px-3 pb-0 pt-3 active:cursor-grabbing lg:hidden"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
+        onPointerDown={handleSwipeStart}
+        onPointerUp={handleSwipeEnd}
+        onPointerCancel={handleSwipeCancel}
       >
         {/* Banner Card Container */}
         <div className="relative h-[270px] xs:h-[285px] sm:h-[320px] w-full overflow-hidden rounded-2xl border border-border/50 bg-dark shadow-md">
@@ -68,7 +111,8 @@ export function HeroSection() {
                 src={item.image.src}
                 alt={index === activeIndex ? item.image.alt : ""}
                 fill
-                priority={index === 0}
+                draggable={false}
+                fetchPriority={index === 0 ? "high" : "auto"}
                 sizes="(max-width: 1023px) 100vw, 50vw"
                 className="object-cover"
               />
@@ -93,7 +137,7 @@ export function HeroSection() {
             type="button"
             onClick={handlePrev}
             aria-label="Previous slide"
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 flex size-8 items-center justify-center rounded-full bg-dark/40 text-white backdrop-blur-sm transition active:scale-90"
+            className="absolute left-2 top-1/2 z-20 flex size-10 -translate-y-1/2 items-center justify-center text-white drop-shadow-md transition hover:text-primary active:scale-90"
           >
             <Icon name="left" className="size-4" />
           </button>
@@ -101,7 +145,7 @@ export function HeroSection() {
             type="button"
             onClick={handleNext}
             aria-label="Next slide"
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 flex size-8 items-center justify-center rounded-full bg-dark/40 text-white backdrop-blur-sm transition active:scale-90"
+            className="absolute right-2 top-1/2 z-20 flex size-10 -translate-y-1/2 items-center justify-center text-white drop-shadow-md transition hover:text-primary active:scale-90"
           >
             <Icon name="right" className="size-4" />
           </button>
@@ -187,16 +231,19 @@ export function HeroSection() {
         aria-labelledby="desktop-hero-heading"
         aria-roledescription="carousel"
         aria-label="Featured meals and offers"
-        className="hidden lg:block hero-section group relative"
+        className="hero-section group relative hidden cursor-grab touch-pan-y select-none active:cursor-grabbing lg:block"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
+        onPointerDown={handleSwipeStart}
+        onPointerUp={handleSwipeEnd}
+        onPointerCancel={handleSwipeCancel}
       >
         {/* Desktop Left Slider Arrow (Visible on hover) */}
         <button
           type="button"
           onClick={handlePrev}
           aria-label="Previous slide"
-          className="pointer-events-auto absolute left-4 top-1/2 z-30 -translate-y-1/2 flex size-12 items-center justify-center rounded-2xl border border-white/20 bg-dark/40 text-white shadow-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-105 hover:bg-dark/70 hover:text-white active:scale-95 focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-white lg:left-6"
+          className="pointer-events-auto absolute left-4 top-1/2 z-30 flex size-12 -translate-y-1/2 items-center justify-center text-white opacity-0 drop-shadow-lg transition-all duration-300 hover:scale-110 hover:text-primary active:scale-95 focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-white group-hover:opacity-100 lg:left-6"
         >
           <Icon name="left" className="size-6" />
         </button>
@@ -206,14 +253,14 @@ export function HeroSection() {
           type="button"
           onClick={handleNext}
           aria-label="Next slide"
-          className="pointer-events-auto absolute right-4 top-1/2 z-30 -translate-y-1/2 flex size-12 items-center justify-center rounded-2xl border border-white/20 bg-dark/40 text-white shadow-xl backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-105 hover:bg-dark/70 hover:text-white active:scale-95 focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-white lg:right-6"
+          className="pointer-events-auto absolute right-4 top-1/2 z-30 flex size-12 -translate-y-1/2 items-center justify-center text-white opacity-0 drop-shadow-lg transition-all duration-300 hover:scale-110 hover:text-primary active:scale-95 focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-white group-hover:opacity-100 lg:right-6"
         >
           <Icon name="right" className="size-6" />
         </button>
 
         {/* Desktop Pagination Dots */}
         <div
-          className="pointer-events-auto absolute bottom-6 left-1/2 z-30 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/15 bg-dark/40 px-3.5 py-1.5 shadow-xl backdrop-blur-md opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-all duration-300"
+          className="pointer-events-auto absolute bottom-6 left-1/2 z-30 flex -translate-x-1/2 items-center gap-0.5 rounded-full border border-white/15 bg-dark/40 px-2 py-1 shadow-xl backdrop-blur-md opacity-0 transition-all duration-300 group-hover:opacity-100 focus-within:opacity-100"
           role="tablist"
           aria-label="Hero carousel pagination"
         >
@@ -227,12 +274,14 @@ export function HeroSection() {
                 aria-selected={isActive}
                 aria-label={`Go to slide ${index + 1}: ${item.badge}`}
                 onClick={() => setActiveIndex(index)}
-                className={`h-2 transition-all duration-300 focus-visible:outline-2 focus-visible:outline-primary ${
-                  isActive
-                    ? "w-7 rounded-full bg-primary"
-                    : "size-2 rounded-full bg-white/50 hover:bg-white/90"
-                }`}
-              />
+                className="group/dot flex size-5 cursor-pointer items-center justify-center rounded-full transition-transform hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-white"
+              >
+                <span
+                  className={`block h-1.5 rounded-full transition-all duration-300 group-hover/dot:bg-white ${
+                    isActive ? "w-5 bg-primary" : "w-1.5 bg-white/50"
+                  }`}
+                />
+              </button>
             );
           })}
         </div>
@@ -286,7 +335,8 @@ export function HeroSection() {
                 src={item.image.src}
                 alt={index === activeIndex ? item.image.alt : ""}
                 fill
-                preload={index === 0}
+                draggable={false}
+                fetchPriority={index === 0 ? "high" : "auto"}
                 sizes="100vw"
                 className="hero-image object-cover"
               />

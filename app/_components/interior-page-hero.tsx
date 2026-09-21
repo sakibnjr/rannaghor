@@ -20,7 +20,7 @@ export function InteriorPageHero({
   return (
     <section
       aria-labelledby={labelledBy}
-      className="hidden sm:block relative isolate h-[360px] overflow-hidden border-b border-border bg-brand-bg sm:h-[300px] lg:h-[280px]"
+      className="hidden sm:block relative isolate overflow-hidden border-b border-border bg-brand-bg py-6 sm:py-7 lg:py-8"
     >
       <Image
         src={image}
@@ -32,10 +32,10 @@ export function InteriorPageHero({
         style={{ objectPosition: imagePosition }}
       />
       <div
-        className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(255,249,245,1)_0%,rgba(255,249,245,0.96)_32%,rgba(255,249,245,0.72)_48%,rgba(255,249,245,0)_76%)]"
+        className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(255,249,245,0.98)_0%,rgba(255,249,245,0.9)_22%,rgba(255,249,245,0.35)_38%,rgba(255,249,245,0)_50%)]"
         aria-hidden="true"
       />
-      <div className="site-shell flex h-full items-center py-5">
+      <div className="site-shell flex items-center">
         <Reveal className="max-w-[540px] rounded-xl bg-brand-bg/94 p-4 shadow-sm sm:bg-transparent sm:p-0 sm:shadow-none">
           {children}
         </Reveal>

@@ -3,45 +3,81 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/app/_components/cart-context";
-import { formatPrice } from "@/app/_lib/cart-calculations";
 import { Icon } from "@/app/_ui/icon";
 import { CartEmpty } from "@/app/cart/_components/cart-empty";
-import { CheckoutForm } from "./checkout-form";
+import type { PlacedOrderData } from "../_types/checkout";
+import { CheckoutAccordionForm } from "./checkout-accordion-form";
 import { CheckoutOrderSummary } from "./checkout-order-summary";
+import { CheckoutOrderSuccess } from "./checkout-order-success";
 
 export function CheckoutPage() {
   const { items, isReady } = useCart();
-  const [order, setOrder] = useState<{ id: string; total: number } | null>(null);
+  const [order, setOrder] = useState<PlacedOrderData | null>(null);
 
   if (!isReady) {
-    return <div className="site-shell py-5 sm:py-6" aria-busy="true"><div className="h-80 animate-pulse rounded-2xl bg-white" /></div>;
-  }
-
-  if (order) {
     return (
-      <div className="site-shell flex min-h-[65vh] items-center justify-center py-5 sm:py-6">
-        <section className="w-full max-w-xl rounded-2xl border border-border bg-white p-6 text-center shadow-sm sm:p-8">
-          <span className="mx-auto flex size-16 items-center justify-center rounded-full bg-emerald-50 text-secondary"><Icon name="check" className="size-8" /></span>
-          <p className="mt-6 text-sm font-bold text-primary">Order {order.id}</p>
-          <h1 className="mt-2 text-3xl font-extrabold">Order confirmed</h1>
-          <p className="mt-3 text-muted">We received your {formatPrice(order.total)} order. The restaurant will call you to confirm delivery.</p>
-          <Link href="/menu" className="section-action mt-7 bg-primary px-6 text-white hover:bg-primary-hover">Browse more dishes</Link>
-        </section>
+      <div className="site-shell py-4 sm:py-8" aria-busy="true">
+        <div className="h-80 sm:h-96 animate-pulse rounded-2xl sm:rounded-3xl bg-white/70" />
       </div>
     );
   }
 
+  // Order Confirmed State
+  if (order) {
+    return <CheckoutOrderSuccess order={order} />;
+  }
+
+  // Cart Empty State
   if (items.length === 0) {
-    return <div className="site-shell py-5 sm:py-6"><div className="rounded-2xl border border-border bg-white"><CartEmpty /></div></div>;
+    return (
+      <div className="site-shell py-5 sm:py-8 lg:py-10">
+        <div className="mx-auto max-w-xl rounded-2xl sm:rounded-3xl border border-border bg-white p-5 sm:p-6 shadow-sm">
+          <CartEmpty />
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="site-shell py-5 sm:py-6">
-      <p className="text-sm font-bold text-primary">Secure checkout</p>
-      <h1 className="mt-0.5 text-3xl font-extrabold tracking-tight">Complete your order</h1>
-      <p className="mt-1 text-sm text-muted">A few details and your meal will be on its way.</p>
-      <div className="mt-5 grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
-        <CheckoutForm onComplete={setOrder} />
+    <div className="site-shell py-3.5 sm:py-6 lg:py-8">
+      {/* Top Header & Breadcrumb */}
+      <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
+        <div>
+          <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-bold text-muted">
+            <Link href="/menu" className="hover:text-primary">
+              Menu
+            </Link>
+            <span>/</span>
+            <Link href="/cart" className="hover:text-primary">
+              Cart
+            </Link>
+            <span>/</span>
+            <span className="text-primary">Checkout</span>
+          </div>
+          <h1 className="mt-0.5 text-xl font-black tracking-tight text-dark sm:text-2xl lg:text-3xl">
+            Complete your order
+          </h1>
+          <p className="text-[11px] sm:text-xs text-muted">
+            Fast, secure checkout. Your meal will be cooked fresh upon confirmation.
+          </p>
+        </div>
+
+        {/* Security & Guarantee Badges */}
+        <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-bold text-secondary">
+          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 sm:px-3 sm:py-1 text-emerald-800">
+            <Icon name="check" className="size-3 sm:size-3.5" /> 100% Encrypted Checkout
+          </span>
+        </div>
+      </div>
+
+      {/* Main 2-Column Grid */}
+      <div className="mt-4 sm:mt-6 grid items-start gap-4 sm:gap-6 lg:grid-cols-[minmax(0,1fr)_380px] xl:grid-cols-[minmax(0,1fr)_400px]">
+        {/* Left Column: Progressive Step Stack Accordion */}
+        <div className="min-w-0">
+          <CheckoutAccordionForm onComplete={setOrder} />
+        </div>
+
+        {/* Right Column: Sticky Pinned Order Summary */}
         <CheckoutOrderSummary />
       </div>
     </div>

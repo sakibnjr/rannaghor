@@ -1,17 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
 import { Icon } from "@/app/_ui/icon";
 import { Logo } from "./logo";
 import { HeaderNav } from "./header-nav";
 import { HeaderActions } from "./header-actions";
 import { MobileNavDrawer } from "./mobile-nav-drawer";
+import { useSearch } from "./search-context";
 
 export function SiteHeader() {
   const [compact, setCompact] = useState(false);
-  const pathname = usePathname();
-  const router = useRouter();
+  const { openSearch } = useSearch();
 
   useEffect(() => {
     const updateHeader = () => setCompact(window.scrollY > 24);
@@ -19,16 +18,6 @@ export function SiteHeader() {
     window.addEventListener("scroll", updateHeader, { passive: true });
     return () => window.removeEventListener("scroll", updateHeader);
   }, []);
-
-  function openMenuSearch() {
-    if (pathname === "/menu") {
-      window.dispatchEvent(new Event("focus-menu-search"));
-      return;
-    }
-
-    window.sessionStorage.setItem("focus-menu-search", "true");
-    router.push("/menu");
-  }
 
   return (
     <>
@@ -43,9 +32,9 @@ export function SiteHeader() {
         </div>
         <button
           type="button"
-          onClick={openMenuSearch}
-          className="flex min-h-10 min-w-0 items-center gap-2 rounded-full border border-border bg-brand-bg px-3 text-left text-muted shadow-2xs transition-colors hover:border-primary/30 hover:bg-primary-light hover:text-primary"
-          aria-label="Search the menu"
+          onClick={() => openSearch()}
+          className="flex min-h-10 min-w-0 items-center gap-2 rounded-full border border-border bg-brand-bg px-3 text-left text-muted shadow-2xs transition-colors hover:border-primary/30 hover:bg-primary-light hover:text-primary cursor-pointer"
+          aria-label="Search food and deals"
         >
           <Icon name="search" className="size-4" />
           <span className="truncate text-xs font-medium">Search food</span>

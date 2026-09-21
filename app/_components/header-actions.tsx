@@ -1,54 +1,29 @@
 "use client";
 
 import { Icon } from "@/app/_ui/icon";
-
 import Link from "next/link";
-import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
 import { useCart } from "@/app/_components/cart-context";
+import { useSearch } from "@/app/_components/search-context";
 
 export function HeaderActions() {
   const { itemCount, openCart } = useCart();
-  const [showSearch, setShowSearch] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const { openSearch } = useSearch();
 
   return (
     <div className="flex items-center justify-self-end gap-1 sm:gap-1.5">
-      {/* Search Button & Popover */}
-      <div className="relative hidden md:block">
+      {/* Search Button (Opens Search Modal with Suggestions) */}
+      <div className="hidden md:block">
         <button
-          onClick={() => setShowSearch(!showSearch)}
+          type="button"
+          onClick={() => openSearch()}
           className="flex size-10 cursor-pointer items-center justify-center rounded-full border border-border bg-brand-bg text-dark shadow-2xs transition-colors hover:border-primary/30 hover:bg-primary-light hover:text-primary xl:size-9"
-          aria-label="Search food"
-          aria-expanded={showSearch}
+          aria-label="Search food and deals (Ctrl+K or /)"
+          title="Search food (Ctrl+K)"
         >
-          <Icon name="search" />
+          <Icon name="search" className="size-4" />
         </button>
-
-        <AnimatePresence>
-          {showSearch && (
-          <m.div
-            initial={{ opacity: 0, y: -8, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -6, scale: 0.98 }}
-            className="absolute right-0 top-12 z-50 w-72 rounded-2xl border border-border bg-white p-2 shadow-xl"
-          >
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-stone-50 rounded-xl">
-              <Icon name="search" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                aria-label="Search dishes"
-                placeholder="Search dishes (e.g. Biryani)..."
-                className="w-full text-xs bg-transparent focus:outline-none text-[#1D2522]"
-                autoFocus
-              />
-            </div>
-          </m.div>
-          )}
-        </AnimatePresence>
       </div>
 
       {/* Login / Account — icon only */}

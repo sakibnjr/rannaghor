@@ -9,7 +9,7 @@ const steps: { icon: IconName; title: string; description: string }[] = [
 
 export function OfferSteps() {
   return (
-    <section aria-labelledby="offer-steps-heading" className="py-10 sm:py-12">
+    <section aria-labelledby="offer-steps-heading" className="pt-3 sm:pt-4 pb-10 sm:pb-12">
       <div className="site-shell">
         <div className="rounded-2xl border border-clay-border bg-clay px-5 py-7 text-dark sm:px-7">
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">

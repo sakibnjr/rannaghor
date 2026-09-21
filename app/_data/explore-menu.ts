@@ -2,7 +2,7 @@ import { foodCategories } from "./categories";
 import { restaurantImages } from "./imagery";
 import { Product } from "@/app/_types/product";
 
-export const exploreCategories = ["Popular", ...foodCategories.map((category) => category.name), "Chicken", "Beef"];
+export const exploreCategories = ["Popular", ...foodCategories.map((category) => category.name)];
 
 export const exploreMenuItems: Product[] = [
   {
@@ -15,7 +15,7 @@ export const exploreMenuItems: Product[] = [
     oldPrice: 340,
     rating: 4.8,
     reviewCount: 410,
-    categoryId: "Chicken",
+    categoryId: "Kebab",
     available: true,
   },
   {
@@ -27,7 +27,7 @@ export const exploreMenuItems: Product[] = [
     price: 260,
     rating: 4.9,
     reviewCount: 850,
-    categoryId: "Beef",
+    categoryId: "Biryani",
     available: true,
   },
   {
@@ -65,7 +65,7 @@ export const exploreMenuItems: Product[] = [
     oldPrice: 360,
     rating: 4.8,
     reviewCount: 290,
-    categoryId: "Chicken",
+    categoryId: "Kebab",
     available: true,
   },
   {

@@ -3,6 +3,7 @@
 import { Icon } from "@/app/_ui/icon";
 
 import Image from "next/image";
+import Link from "next/link";
 import { SpecialOffer } from "@/app/_types/offer";
 import { useCart } from "@/app/_components/cart-context";
 
@@ -12,12 +13,13 @@ interface PromoOfferCardProps {
 
 export function PromoOfferCard({ offer }: PromoOfferCardProps) {
   const { addToCart } = useCart();
+  const slug = offer.id.replace(/^offer-/, "");
 
   const handleOrder = () => {
     addToCart({
       id: offer.id,
       name: offer.title,
-      slug: offer.id,
+      slug: slug,
       description: offer.subtitle,
       image: offer.image,
       price: offer.discountedPrice,
@@ -48,7 +50,9 @@ export function PromoOfferCard({ offer }: PromoOfferCardProps) {
       {/* Left Details */}
       <div className="flex flex-col items-start gap-1 z-10 flex-1">
         <h4 className="text-base sm:text-lg font-black text-[#C02615] tracking-tight">
-          {offer.title}
+          <Link href={`/offers/${slug}`} className="hover:underline">
+            {offer.title}
+          </Link>
         </h4>
         <p className="text-[11px] sm:text-xs text-[#6B706D] line-clamp-1">
           {offer.subtitle}
@@ -75,7 +79,11 @@ export function PromoOfferCard({ offer }: PromoOfferCardProps) {
       </div>
 
       {/* Right Dish Image */}
-      <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden shadow-2xs flex-shrink-0">
+      <Link
+        href={`/offers/${slug}`}
+        className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden shadow-2xs flex-shrink-0 block"
+        aria-label={`View ${offer.title} details`}
+      >
         <Image
           src={offer.image}
           alt={offer.title}
@@ -83,7 +91,7 @@ export function PromoOfferCard({ offer }: PromoOfferCardProps) {
           sizes="128px"
           className="object-cover hover:scale-105 transition-transform duration-300"
         />
-      </div>
+      </Link>
     </div>
   );
 }

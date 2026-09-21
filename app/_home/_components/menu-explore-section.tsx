@@ -6,18 +6,19 @@ import Link from "next/link";
 import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
 import { useMenuFilter } from "./menu-filter-provider";
-import { popularProducts } from "@/app/_data/products";
-import { exploreCategories, exploreMenuItems } from "@/app/_data/explore-menu";
+import { exploreCategories } from "@/app/_data/explore-menu";
+import { menuProducts, normalizeCategory } from "@/app/menu/_data/menu-products";
 import { MenuExploreCard } from "./menu-explore-card";
 
 export function MenuExploreSection() {
   const { category: activeTab, selectCategory: setActiveTab } = useMenuFilter();
-  const menuItems = [...exploreMenuItems, ...popularProducts];
+  const normalizedActiveTab = normalizeCategory(activeTab);
+
   const displayItems = activeTab === "Popular"
-    ? exploreMenuItems.slice(0, 6)
-    : menuItems.filter((item) =>
-        item.categoryId.toLowerCase().replace(/^cat-/, "") === activeTab.toLowerCase()
-      );
+    ? menuProducts.filter((item) => item.bestseller || item.rating >= 4.8).slice(0, 6)
+    : menuProducts
+        .filter((item) => normalizeCategory(item.categoryId) === normalizedActiveTab)
+        .slice(0, 6);
 
   return (
     <section id="explore-menu" aria-labelledby="explore-heading" className="w-full">

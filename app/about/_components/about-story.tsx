@@ -4,7 +4,7 @@ import { aboutImages } from "../_data/about-content";
 
 export function AboutStory() {
   return (
-    <section className="site-shell grid items-center gap-7 pt-3 pb-8 sm:py-12 lg:grid-cols-2 lg:gap-10" aria-labelledby="about-story-heading">
+    <section className="site-shell grid items-center gap-7 py-6 sm:py-7 lg:py-8 lg:grid-cols-2 lg:gap-10" aria-labelledby="about-story-heading">
       <div className="relative min-h-[320px] overflow-hidden rounded-2xl sm:min-h-[400px]">
         <Image src={aboutImages.restaurant} alt="The warm RannaGhor dining room in the evening" fill sizes="(max-width: 1023px) 100vw, 50vw" className="object-cover" />
         <div className="absolute bottom-4 left-4 max-w-xs rounded-xl bg-brand-bg/95 p-4 shadow-lg">

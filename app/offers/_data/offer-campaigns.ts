@@ -12,6 +12,7 @@ export const offerFilters: OfferFilterOption[] = [
 export const offerCampaigns: OfferCampaign[] = [
   {
     id: "offer-family-feast",
+    slug: "family-feast",
     title: "Family Feast",
     subtitle: "A generous spread made for sharing.",
     description: "Chicken biryani, roast, chilled drinks and a complimentary dessert for the whole table.",
@@ -23,10 +24,13 @@ export const offerCampaigns: OfferCampaign[] = [
     category: "family",
     availability: "Available every day",
     label: "Most popular",
+    rating: 4.9,
+    reviewCount: 380,
     featured: true,
   },
   {
     id: "offer-lunch-special",
+    slug: "lunch-special",
     title: "Lunch Special",
     subtitle: "A satisfying midday meal for less.",
     description: "Fragrant chicken rice with salad and a refreshing drink, served as one quick combo.",
@@ -38,9 +42,12 @@ export const offerCampaigns: OfferCampaign[] = [
     category: "lunch",
     availability: "Sun–Thu, 12:00–4:00 PM",
     label: "Lunch only",
+    rating: 4.8,
+    reviewCount: 220,
   },
   {
     id: "offer-weekend-combo",
+    slug: "weekend-combo",
     title: "Weekend Combo",
     subtitle: "More taste for relaxed weekends.",
     description: "A loaded burger, crispy chicken, fries and a cold drink for an easy weekend treat.",
@@ -52,9 +59,12 @@ export const offerCampaigns: OfferCampaign[] = [
     category: "weekend",
     availability: "Friday and Saturday",
     label: "Weekend deal",
+    rating: 4.9,
+    reviewCount: 195,
   },
   {
     id: "offer-biryani-for-two",
+    slug: "biryani-for-two",
     title: "Biryani for Two",
     subtitle: "Two plates, one delicious price.",
     description: "A pair of aromatic chicken biryanis with cooling borhani for an effortless meal together.",
@@ -66,9 +76,12 @@ export const offerCampaigns: OfferCampaign[] = [
     category: "combo",
     availability: "Available every day",
     label: "Great for two",
+    rating: 4.9,
+    reviewCount: 310,
   },
   {
     id: "offer-grill-table",
+    slug: "grill-table",
     title: "Grill Table",
     subtitle: "Smoky favourites for the whole table.",
     description: "Juicy grilled chicken, kebabs, aromatic rice and salad bundled for sharing.",
@@ -80,9 +93,12 @@ export const offerCampaigns: OfferCampaign[] = [
     category: "family",
     availability: "Available after 5:00 PM",
     label: "Dinner deal",
+    rating: 4.8,
+    reviewCount: 175,
   },
   {
     id: "offer-burger-buddy",
+    slug: "burger-buddy",
     title: "Burger Buddy Deal",
     subtitle: "Double the burgers, double the fun.",
     description: "Two juicy beef burgers with a shared portion of fries and two chilled drinks.",
@@ -94,9 +110,12 @@ export const offerCampaigns: OfferCampaign[] = [
     category: "combo",
     availability: "Available every day",
     label: "Buddy combo",
+    rating: 4.8,
+    reviewCount: 240,
   },
   {
     id: "offer-student-meal",
+    slug: "student-meal",
     title: "Student Meal",
     subtitle: "A quick meal that fits the budget.",
     description: "Stir-fried chicken chow mein paired with a cold mango drink for busy afternoons.",
@@ -108,9 +127,12 @@ export const offerCampaigns: OfferCampaign[] = [
     category: "lunch",
     availability: "Sun–Thu, 12:00–5:00 PM",
     label: "Student favourite",
+    rating: 4.7,
+    reviewCount: 160,
   },
   {
     id: "offer-pizza-pairing",
+    slug: "pizza-pairing",
     title: "Pizza Pairing",
     subtitle: "A complete comfort-food combo.",
     description: "Fresh margherita pizza, smoky wings and two cold drinks in one easy order.",
@@ -122,5 +144,23 @@ export const offerCampaigns: OfferCampaign[] = [
     category: "combo",
     availability: "Available every day",
     label: "Combo favourite",
+    rating: 4.9,
+    reviewCount: 285,
   },
 ];
+
+export function getOfferSlug(offer: { id: string; slug?: string }): string {
+  if (offer.slug) return offer.slug;
+  return offer.id.replace(/^offer-/, "");
+}
+
+export function getOfferBySlug(slug: string): OfferCampaign | undefined {
+  const cleanSlug = slug.trim().toLowerCase();
+  return offerCampaigns.find(
+    (offer) =>
+      offer.slug === cleanSlug ||
+      offer.id === cleanSlug ||
+      offer.id === `offer-${cleanSlug}` ||
+      offer.id.replace(/^offer-/, "") === cleanSlug,
+  );
+}

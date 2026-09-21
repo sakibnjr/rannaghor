@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import { useCart } from "@/app/_components/cart-context";
 import { Icon } from "@/app/_ui/icon";
 
-export function CouponForm() {
+export function CouponForm({ compact = false }: { compact?: boolean }) {
   const { couponCode, couponFeedback, applyCoupon, removeCoupon } = useCart();
   const [code, setCode] = useState("");
 
@@ -36,12 +36,12 @@ export function CouponForm() {
           value={code}
           onChange={(event) => setCode(event.target.value)}
           placeholder="Coupon code"
-          className="min-h-10 min-w-0 flex-1 rounded-lg border border-border bg-white px-3 text-sm uppercase outline-none placeholder:normal-case focus:border-secondary"
+          className={`${compact ? "min-h-9" : "min-h-10"} min-w-0 flex-1 rounded-lg border border-border bg-white px-3 text-xs sm:text-sm uppercase outline-none placeholder:normal-case focus:border-secondary`}
         />
         <button
           type="submit"
           disabled={!code.trim()}
-          className="min-h-10 rounded-lg bg-dark px-3.5 text-sm font-bold text-white hover:bg-secondary disabled:cursor-not-allowed disabled:opacity-40"
+          className={`${compact ? "min-h-9 px-3 text-xs" : "min-h-10 px-3.5 text-sm"} rounded-lg bg-dark font-bold text-white hover:bg-secondary disabled:cursor-not-allowed disabled:opacity-40 transition-colors`}
         >
           Apply
         </button>

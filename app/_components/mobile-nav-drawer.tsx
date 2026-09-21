@@ -8,12 +8,15 @@ import { createPortal } from "react-dom";
 import { AnimatePresence } from "motion/react";
 import * as m from "motion/react-m";
 
+import { useSearch } from "./search-context";
+
 export function MobileNavDrawer() {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const triggerRef = useRef<HTMLButtonElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const { openSearch } = useSearch();
 
   const links = [
     { label: "Home", href: "/" },
@@ -92,6 +95,18 @@ export function MobileNavDrawer() {
             </div>
 
             <nav className="flex flex-1 flex-col gap-1 overflow-y-auto px-4 py-5" aria-label="Main navigation">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsOpen(false);
+                  openSearch();
+                }}
+                className="mb-2 flex min-h-11 items-center gap-2.5 rounded-xl border border-border bg-brand-bg px-3.5 text-sm font-bold text-dark transition-colors hover:border-primary/40 hover:bg-primary-light hover:text-primary cursor-pointer text-left"
+              >
+                <Icon name="search" className="size-4 text-primary" />
+                <span className="text-muted">Search dishes & offers...</span>
+              </button>
+
               {links.map((link) => {
                 const active = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
                 return (

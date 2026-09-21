@@ -3,6 +3,7 @@
 import { Icon } from "@/app/_ui/icon";
 
 import Image from "next/image";
+import Link from "next/link";
 import { SpecialOffer } from "@/app/_types/offer";
 import { useCart } from "@/app/_components/cart-context";
 
@@ -12,12 +13,13 @@ interface FeaturedOfferCardProps {
 
 export function FeaturedOfferCard({ offer }: FeaturedOfferCardProps) {
   const { addToCart } = useCart();
+  const slug = offer.id.replace(/^offer-/, "");
 
   const handleOrder = () => {
     addToCart({
       id: offer.id,
       name: offer.title,
-      slug: "family-feast",
+      slug: slug,
       description: offer.subtitle,
       image: offer.image,
       price: offer.discountedPrice,
@@ -31,15 +33,19 @@ export function FeaturedOfferCard({ offer }: FeaturedOfferCardProps) {
 
   return (
     <div className="relative h-full w-full flex-1 overflow-hidden rounded-3xl border border-[#EAE2D2] bg-[#FAF3E8] shadow-2xs transition-shadow hover:shadow-md">
-      <div className="relative order-2 h-56 w-full sm:absolute sm:inset-y-0 sm:right-0 sm:h-full sm:w-[48%]">
+      <Link
+        href={`/offers/${slug}`}
+        className="relative block order-2 h-56 w-full sm:absolute sm:inset-y-0 sm:right-0 sm:h-full sm:w-[48%]"
+        aria-label={`View ${offer.title} details`}
+      >
         <Image
           src={offer.image}
           alt={offer.title}
           fill
           sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 380px"
-          className="object-cover"
+          className="object-cover transition-transform duration-300 hover:scale-105"
         />
-      </div>
+      </Link>
 
       {/* Scalloped Octagonal Green Savings Badge */}
       <div
@@ -56,7 +62,9 @@ export function FeaturedOfferCard({ offer }: FeaturedOfferCardProps) {
       {/* Left Content Column */}
       <div className="relative z-10 flex w-full flex-col items-start gap-2.5 p-5 sm:h-full sm:min-h-[320px] sm:w-[50%] sm:p-7">
         <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-[#C02615] leading-tight">
-          {offer.title}
+          <Link href={`/offers/${slug}`} className="hover:underline">
+            {offer.title}
+          </Link>
         </h3>
         <p className="text-xs sm:text-sm font-medium text-[#443831] leading-tight">
           {offer.subtitle}
